@@ -1,8 +1,8 @@
 import './Banner.css'
 // import img1 from '../assests/banner.jpg'
-import img1 from '../../assests/banner.jpg'
-import img2 from '../../assests/banner-2.jpg'
-import img3 from '../../assests/banner-3.jpg'
+import img1 from '../../assests/banner.png'
+import img2 from '../../assests/banner1.png'
+import img3 from '../../assests/banner2.png'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
