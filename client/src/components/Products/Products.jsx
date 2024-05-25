@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { publicRequest } from "../../utils/requestMethod";
 // import axios from "axios";
 
-const Products = ({ cat,filters, headingText, innerpage }) => {
+const Products = ({ cat, filters, headingText, innerpage }) => {
 
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
@@ -14,8 +14,8 @@ const Products = ({ cat,filters, headingText, innerpage }) => {
             try {
                 const res = await publicRequest.get(cat ? `products?category=${cat}` : "/products");
                 setProducts(res.data);
-            } catch (error) {  
-             console.log("Error in getting products", error)
+            } catch (error) {
+                console.log("Error in getting products", error)
                 // res.error(error)
             }
         };
@@ -32,10 +32,10 @@ const Products = ({ cat,filters, headingText, innerpage }) => {
     return (
         <div className="products-container" >
             {!innerpage && <motion.div className="sec-heading"
-                initial={{ opacity: 0, x: -40 }}
+                initial={{ opacity: 0, y: 40 }}
                 transition={{ duration: 1 }}
-                whileInView={{ opacity: 1, scale: 1, x: 0 }}
-                viewport={{ once: false }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.7 }}
             >{headingText}</motion.div>}
             <div className="products">
                 {(products.length !== 0) ? (cat ? filteredProducts.map((item) => (

@@ -6,7 +6,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import { useNavigate } from "react-router-dom";
-import logo from "../../assests/khaorganic-logo1.jpg";
+import logo from "../../assests/icon1.png";
 import MenuIcon from '@mui/icons-material/Menu';
 import Search from "../Search/Search.jsx";
 import { useSelector } from "react-redux";
@@ -71,7 +71,7 @@ const Header = () => {
                         <li onClick={() => navigate("/")}>Home</li>
                         <li className="dropdown" onClick={(e) => { setIsActive(!isActive) }}>
                             <div className="dropdown-btn" >
-                                Products
+                                Shop
                                 <ArrowDropDownIcon />
                             </div>
                             {isActive && (

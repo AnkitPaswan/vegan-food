@@ -38,13 +38,13 @@
 
 .footer {
     width: 100%;
-    background-color: #111111;
+    background-color: #253237;
     position: absolute;
     padding: 10px;
 }
 
 .footer-content {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
     display: flex;
     flex-flow: wrap;
@@ -88,7 +88,7 @@
 }
 
 .col .text {
-    color: #999999;
+    color: #c8c6c6;
     font-size: 16px;
     font-weight: 200;
     line-height: 1.5em;

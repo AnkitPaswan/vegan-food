@@ -7,6 +7,8 @@ import Products from '../components/Products/Products'
 import Philosophybanner from '../components/Philosophybanner/Philosophybanner'
 import Whywe from '../components/Whywe/Whywe'
 import Newsletter from '../components/Newsletter/Newsletter'
+import NewArrival from '../components/NewArrival/NewArrival'
+import Assurity from '../components/Assurity/Assurity'
 
 const HomePage = () => {
     return (
@@ -14,6 +16,8 @@ const HomePage = () => {
             <Announcement />
             <Header />
             <Banner />
+            <NewArrival heading="New Arrivals" />
+            <Assurity />
             <Products headingText="Our Products" />
             <Philosophybanner />
             <Whywe headTag="Our Features" />
