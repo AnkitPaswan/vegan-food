@@ -1,17 +1,17 @@
 export const categories = [
   {
     id: 1,
-    title: "Atta",
+    title: "Fresh Juice",
     cat: "atta",
   },
   {
     id: 2,
-    title: "Daliya",
+    title: "Fruits",
     cat: "daliya",
   },
   {
     id: 3,
-    title: "Besan",
+    title: "Dry fruits",
     cat: "besan",
   },
 ];

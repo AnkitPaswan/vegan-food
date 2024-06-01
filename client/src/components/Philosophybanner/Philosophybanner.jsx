@@ -1,6 +1,6 @@
 
 import React from 'react'
-import banner from '../../assests/banner.png'
+import banner from '../../assests/mainbanner.png'
 import './Philosophybanner.css'
 import { motion } from 'framer-motion';
 const Philosophybanner = () => {

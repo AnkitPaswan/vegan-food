@@ -43,16 +43,18 @@
     position: absolute;
     left: 40%;
     font-weight: 600;
-    /* transform: translate(-60%); */
+    transform: translate(-60%);
+    z-index: 999;
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 20px;
     list-style-type: none;
 }
 
 .center li {
     cursor: pointer;
     padding: 5px;
+    text-transform: uppercase;
 }
 
 .center li:hover {

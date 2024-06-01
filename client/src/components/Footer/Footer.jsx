@@ -10,6 +10,7 @@ import './Footer.css'
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { motion } from 'framer-motion';
+import Newsletter from "../Newsletter/Newsletter"
 
 const Footer = () => {
     const navigate = useNavigate();
@@ -37,11 +38,10 @@ const Footer = () => {
             >
                 <div className="footer-content">
                     <div className="col">
-                        <div className="title">KHAORGANIC</div>
+                        <div className="title">VEGAN-FOOD</div>
                         <div className="text">
-                            There are many variations of passages of Lorem Ipsum available, but
-                            the majority have suffered alteration in some form, by injected
-                            humour, or randomised words which don’t look even slightly believable.
+                            An organic fruits shop is a store that specializes in selling organic fruits, which are grown without synthetic pesticides, herbicides, or fertilizers
+                            Offers a variety of organic fruit products, such as juices, jams, and dried fruits.
                         </div>
                         <div className="social-items">
                             <div className="social-icon1"><FacebookIcon /></div>
@@ -54,23 +54,24 @@ const Footer = () => {
                         <div className="title">Get In Touch</div>
                         <div className="c-item">
                             <LocationOnIcon />
-                            <div className="text">Village Badeha, Jaari, Banda, UP</div>
+                            <div className="text">Village Rampatti, Madhubani, Bihar</div>
                         </div>
                         <div className="c-item">
                             <LocalPhoneIcon />
-                            <div className="text">+91 7307221953</div>
+                            <div className="text">+91 8541806579</div>
                         </div>
                         <div className="c-item">
                             <EmailIcon />
-                            <div className="text">customercare@khaorganic.com</div>
+                            <div className="text">customercare@veganfood.com</div>
                         </div>
+                        <Newsletter />
                     </div>
                     <div className="col">
-                        <div className="title">UseFul Links</div>
+                        <div className="title">Quick Links</div>
                         <span className="text">
-                            Premium Atta</span>
-                        <span className="text">Daliya</span>
-                        <span className="text">Premium Besan</span>
+                            Dry Fruits</span>
+                        <span className="text">Fresh Juice</span>
+                        <span className="text">Fruits</span>
                         <span className="text">SignIn</span>
                         <span className="text">Cart</span>
                     </div>
@@ -79,8 +80,8 @@ const Footer = () => {
                         <span className="text">Home</span>
                         <span className="text">About</span>
                         <span className="text">Products</span>
-                        <span className="text">Privacy policy</span>
                         <span className="text">Contact us</span>
+                        <span className="text">Privacy policy</span>
                     </div>
                 </div>
                 <div className="bottam-bar">
@@ -88,7 +89,7 @@ const Footer = () => {
                         <div className="text">
                             Copyright &copy; 2024,
                             <span>
-                                KHAORGANIC.COM
+                                VEGANFOOD.COM
                             </span>
                             ,All Rights Reserved
                         </div>
