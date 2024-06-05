@@ -1,6 +1,6 @@
 .whywe-container {
     background-color: #F7F8FC;
-    padding: 75px 10px;
+    padding: 75px 80px;
 }
 
 .whywe {
@@ -38,7 +38,7 @@
     /* margin-bottom: 24px; */
     /* background-color: #000; */
     background-color: #FFFFFF;
-    padding: 20px 10px;
+    padding: 10px 10px;
 }
 
 .whywe-thumbnail {
@@ -54,7 +54,7 @@
 .whywe-thumbnail img {
     width: 100%;
     display: block;
-    height: 80%;
+    height: 60%;
     width: fit-content;
     z-index: 2;
 }
@@ -66,7 +66,7 @@
 
 .whywe-title {
     display: flex;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 700;
     margin-bottom: 20px;
     text-align: center;
@@ -75,7 +75,7 @@
 }
 
 .desc {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 100;
     opacity: 0.9;
 }

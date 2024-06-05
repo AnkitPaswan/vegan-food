@@ -2,16 +2,16 @@ export const categories = [
   {
     id: 1,
     title: "Fresh Juice",
-    cat: "atta",
+    cat: "juice",
   },
   {
     id: 2,
     title: "Fruits",
-    cat: "daliya",
+    cat: "fruits",
   },
   {
     id: 3,
     title: "Dry fruits",
-    cat: "besan",
+    cat: "dry-fruits",
   },
 ];

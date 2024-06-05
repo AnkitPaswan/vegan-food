@@ -9,7 +9,7 @@
     align-items: center;
     text-align: center;
     justify-content: space-evenly;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 .head-Title {
@@ -49,7 +49,15 @@
     background: none;
     border: 1.5px solid #9d9d9e;
 }
-
+.new{
+    position: relative;
+    top: 40px;
+    left: 10px;
+    width: 50px;
+    background-color: #54AC00;
+    color: white;
+    z-index: 1;
+}
 .NewArrival-thumbnail img {
     width: 100%;
     display: block;
@@ -74,7 +82,7 @@
 }
 
 .price {
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 100;
     opacity: 0.6;
 }

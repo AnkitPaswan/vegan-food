@@ -33,9 +33,9 @@ const Product = ({ item }) => {
 
     return (
         <motion.div className="product-card"
-            initial={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 1 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 100 }}
+            transition={{ duration: 1.2 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: false }}
 
         >

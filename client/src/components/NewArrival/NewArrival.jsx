@@ -1,12 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './NewArrival.css'
-import firstImg from "../../assests/midbanner.png"
-import secImg from "../../assests/midbanner-2.png"
-import thirdImg from "../../assests/midbanner-3.png"
-import forthdImg from "../../assests/midbanner-4.png"
 import { motion } from 'framer-motion';
+import { publicRequest } from "../../utils/requestMethod"
 
 const NewArrival = ({ heading }) => {
+
+    const [arrivals, setArrivals] = useState([]);
+
+    useEffect(() => {
+        const getArrivals = async () => {
+
+            try {
+                const res = await publicRequest.get("/newArrivals");
+                setArrivals(res.data);
+
+            } catch (error) {
+                console.log("Error in getting products", error)
+            }
+
+        };
+        getArrivals()
+    }, [])
+    console.log(arrivals);
+
+
     return (
         <>
             <div className="NewArrival-container"
@@ -23,42 +40,27 @@ const NewArrival = ({ heading }) => {
                     whileInView={{ opacity: 1, scale: 1, y: 0 }}
                     viewport={{ once: false }}
                 >
-                    <div className="NewArrival-card">
-                        <div className="NewArrival-thumbnail">
-                            <img src={firstImg} alt="" />
-                        </div>
-                        <div className="NewArrival-details">
-                            <span className="NewArrival-title">Mango Juice</span>
-                            <span className="price">$ 20</span>
-                        </div>
-                    </div>
-                    <div className="NewArrival-card" >
-                        <div className="NewArrival-thumbnail">
-                            <img src={secImg} alt="" />
-                        </div>
-                        <div className="NewArrival-details">
-                            <span className="NewArrival-title">Wayfarer bag-1</span>
-                            <span className="price">$ 43.2</span>
-                        </div>
-                    </div>
-                    <div className="NewArrival-card">
-                        <div className="NewArrival-thumbnail">
-                            <img src={thirdImg} alt="" />
-                        </div>
-                        <div className="NewArrival-details">
-                            <span className="NewArrival-title">Wayfarer bag-2</span>
-                            <span className="price">$ 24</span>
-                        </div>
-                    </div>
-                    <div className="NewArrival-card">
-                        <div className="NewArrival-thumbnail">
-                            <img src={forthdImg} alt="" />
-                        </div>
-                        <div className="NewArrival-details">
-                            <span className="NewArrival-title">Wayfarer bag-3</span>
-                            <span className="price">$ 30.3</span>
-                        </div>
-                    </div>
+                    {
+                        arrivals.length !== 0 ?
+                            arrivals.map((item) =>
+                            (
+                                <div className="NewArrival-card" key={item._id}>
+                                    <p className="new">
+                                        new
+                                    </p>
+                                    <div className="NewArrival-thumbnail">
+
+                                        <img src={item.img} alt="" />
+                                    </div>
+                                    <div className="NewArrival-details">
+                                        <span className="NewArrival-title">{item.title}</span>
+                                        <span className="price">&#8377; {item.price}</span>
+                                    </div>
+                                </div>
+                            )
+                            ) : <h1>Loading...</h1>
+                    }
+
                 </motion.div>
             </div>
         </>
