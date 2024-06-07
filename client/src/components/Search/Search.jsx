@@ -4,17 +4,19 @@ import CloseIcon from '@mui/icons-material/Close';
 import React, { useState, useEffect } from 'react'
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import SearchIcon from '@mui/icons-material/Search';
 
-const Search = ({ setShowSearch }) => {
+
+function Search() {
+    const [results, setResults] = useState([]);
+    const [query, setQuery] = useState("");
     const navigate = useNavigate();
-    const [products, setProducts] = useState([]);
-    const [query , setQuery] = useState("");
 
-    useEffect(() =>{
+    useEffect(() => {
         const getProducts = async () => {
             try {
                 const res = await axios.get(`http://localhost:5000/api/products/search?q=${query}`);
-                setProducts(res.data);
+                setResults(res.data);
             } catch (error) {
                 console.log(error);
             }
@@ -22,51 +24,44 @@ const Search = ({ setShowSearch }) => {
         getProducts();
     }, [query]);
 
-    console.log(products);
-
-    // let searchResult = products.filter((item) => (item.title.toLowerCase().includes(query)) || (item.title.toUpperCase().includes(query)));
-    
-//  console.log(query);
-
     return (
-        <div className="search-modal">
-            <div className="form-field">
-                <input type="text"
-                    autoFocus
-                    placeholder="Search here..."
+        <>
+            <div className="search-box">
+                <input type="text" placeholder="Search"
+                    value={query}
                     onChange={(e) => setQuery(e.target.value)}
-                    value={query} 
                 />
-                <div className="cler-btn">
-                    <CloseIcon onClick={() => setShowSearch(false)} />
-                </div>
-            </div>
-            <div className="search-result-content">
-                <div className="search-results">
+                <button>
                     {
-                        products?.length === 0 ? (
-                            <h3>No result found "{query}"</h3>
-                        ):
-                       ( (query) && products.map((item) => (
-                           <div className="search-result-item" key={item._id} onClick={() => {
-                            navigate("/product/" + item._id);
-                            setShowSearch(false);
-                        }}>
+                        !query ? <SearchIcon /> : <CloseIcon onClick={() => setQuery("")} />
+                    }
+
+                </button>
+            </div>
+
+            <div className='search-results'>
+                {
+                    results.length === 0 ? (
+                        <h1 className='not-found'>result not found "{query}"</h1>
+                    ) :
+                        (query) && results.map((item) => (
+                            <div className='items' key={item._id}
+                                onClick={() => { navigate("/product/" + item._id) }}
+                            >
                                 <div className="img-container">
                                     <img src={item.img} alt="" />
                                 </div>
-                                <div className="prod-details">
+                                <div className="item-desc">
                                     <span className="name">{item.title}</span>
                                     <span className="desc">{item.desc}</span>
                                 </div>
                             </div>
-               )))
-                    }
+                        ))}
             </div>
-        </div>
-        </div>
-    );
-};
 
+        </>
 
-export default Search;
+    )
+}
+
+export default Search

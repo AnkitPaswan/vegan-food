@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import React from 'react'
 import "./Header.css";
-import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
@@ -21,7 +20,6 @@ const Header = () => {
     const user = useSelector((state) => state.user.currentUser);
     const quantity = useSelector((state) => state.cart.quantity);
     const menuRef = useRef();
-    const [showSearch, setShowSearch] = useState(false);
     const dropdown_toggle = (e) => {
         menuRef.current.classList.toggle('center-visible');
         e.target.classList.toggle('open');
@@ -88,20 +86,29 @@ const Header = () => {
                         }
                     </div>
                     <div className="right">
-                        <li> <SearchIcon onClick={() => setShowSearch(true)} /></li>
+                        <li>
+                            <Search />
+                        </li>
                         <span className="cart-icon" onClick={() => navigate("/Cart")}>
                             <ShoppingCartOutlinedIcon />
                             <span>{quantity}</span>
                         </span>
-                        {
-                            !user ? (<li className='sign' onClick={() => navigate("/Login")}>Sign in</li>) :
+
+                        <details>
+                            <summmary>
+                                <h1>Ankit</h1>
+                                <h1>Pasean</h1>
+                            </summmary>
+                        </details>
+                        {/* {
+                            !user ? (<li className='sign' onClick={() => navigate("/Login")}> Sign in
+                            </li>) :
                                 <li className='sign' onClick={handleLogout}>Logout</li>
-                        }
+                        } */}
 
                     </div>
                 </div>
             </header>
-            {showSearch && <Search setShowSearch={setShowSearch} />}
         </>
     )
 }

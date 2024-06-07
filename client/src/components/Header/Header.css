@@ -117,7 +117,33 @@
     background: linear-gradient(to right, #1D7328, #539F22);
     border-radius: 20px;
 }
+.form{
+    display: flex;
+    justify-content: space-between;
+    
+}
 
+.form input {
+    width: 200px;
+    border: none;
+    outline: none;
+    flex: 8;
+    padding-left: 10px;
+    background-color: #F2F2F2;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+.form button {
+    flex: 1;
+    background-color: #F2F2F2;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #646262;
+    padding: 5px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
 .cart-icon {
     position: relative;
     cursor: pointer;

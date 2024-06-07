@@ -10,7 +10,6 @@ import './Footer.css'
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { motion } from 'framer-motion';
-import Newsletter from "../Newsletter/Newsletter"
 
 const Footer = () => {
     const navigate = useNavigate();
@@ -64,7 +63,12 @@ const Footer = () => {
                             <EmailIcon />
                             <div className="text">customercare@veganfood.com</div>
                         </div>
-                        <Newsletter />
+                        <div className="subscribe" >
+                            <div className="forms">
+                                <input type="text" placeholder="Subscribe" />
+                            </div>
+                            <button>→</button>
+                        </div>
                     </div>
                     <div className="col">
                         <div className="title">Quick Links</div>

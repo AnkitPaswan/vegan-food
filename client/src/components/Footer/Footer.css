@@ -109,6 +109,35 @@
     /* color: rgba(0, 0, 0, 0.5); */
     color: #999999;
 }
+.col .subscribe{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+ padding-top: 50px;
+}
+.col .subscribe .forms{
+    width: 100%;
+    height: 40px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.forms input {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 10px 10px;
+}
+
+.subscribe button {
+    background: linear-gradient(to right, #1D7328, #539F22);
+    color: white;
+    cursor: pointer;
+    width: 25%;
+    font-size: 20px;
+    border: 1px solid #539F22;
+}
 
 .col span,
 text {
@@ -161,7 +190,8 @@ text {
 
 .bottam-bar {
     border-top: 0.5px solid #3e3d3d;
-    padding: 10px;
+    /* padding: 0 50px 0px 50px; */
+    padding: 0;
 }
 
 .bottam-bar-content {

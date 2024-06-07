@@ -54,10 +54,13 @@ const Product = ({ item }) => {
                     <VisibilityIcon style={{ fontSize: "1.2em", color: "#539F22" }} />
                     View detail
                 </div>
-                <div className="shop-btn" onClick={handleClick}>
-                    < ShoppingBagIcon style={{ fontSize: "1.2em", color: "#539F22" }} />
-                    Add to cart
-                </div>
+                {item.inStock === true ?
+                    <div className="shop-btn" onClick={handleClick}>
+                        < ShoppingBagIcon style={{ fontSize: "1.2em", color: "#539F22" }} />
+                        Add to cart
+                    </div> :
+                    <div className="out-of-stock" >Out of Stock</div>
+                }
             </div>
         </motion.div>
 

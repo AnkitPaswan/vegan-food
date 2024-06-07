@@ -46,15 +46,19 @@ const NewArrival = ({ heading }) => {
                             (
                                 <div className="NewArrival-card" key={item._id}>
                                     <p className="new">
-                                        new
+                                        NEW
                                     </p>
                                     <div className="NewArrival-thumbnail">
-
                                         <img src={item.img} alt="" />
                                     </div>
                                     <div className="NewArrival-details">
                                         <span className="NewArrival-title">{item.title}</span>
                                         <span className="price">&#8377; {item.price}</span>
+                                        {/* <span className="price">{
+                                            item.inStock === true ? "IN STOCK" : "OUT OF STOCK"
+                                        }
+                                            <del>&#8377; {item.price + 500}</del>
+                                        </span> */}
                                     </div>
                                 </div>
                             )
