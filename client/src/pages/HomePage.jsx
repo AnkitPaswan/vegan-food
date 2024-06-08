@@ -8,6 +8,7 @@ import Philosophybanner from '../components/Philosophybanner/Philosophybanner'
 import Whywe from '../components/Whywe/Whywe'
 import NewArrival from '../components/NewArrival/NewArrival'
 import Assurity from '../components/Assurity/Assurity'
+import Testimonial from '../components/Testimonial/Testimonial'
 
 const HomePage = () => {
     return (
@@ -20,6 +21,7 @@ const HomePage = () => {
             <Products headingText="Our Products" />
             <Philosophybanner />
             <Whywe headTag="Our Features" />
+            <Testimonial />
             {/* <Whywe headTag="SHOP TO MAKE A DIFFERENCE" /> */}
             <Footer />
         </div>

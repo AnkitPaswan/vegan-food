@@ -41,6 +41,7 @@
     background-color: #253237;
     position: absolute;
     padding: 10px;
+    margin-top: 50px;
 }
 
 .footer-content {
@@ -131,7 +132,7 @@
 }
 
 .subscribe button {
-    background: linear-gradient(to right, #1D7328, #539F22);
+    background: #54AC00;
     color: white;
     cursor: pointer;
     width: 25%;

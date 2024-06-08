@@ -12,7 +12,7 @@
 .thumbnail {
     width: 100%;
     height: 200px;
-    background-color: #c0e3c599;
+    background-color: #F0F0F0;
     display: flex;
     margin-bottom: 10px;
     justify-content: center;
@@ -52,7 +52,7 @@
 }
 
 .prod-details .name:hover {
-    color: #1D7328;
+    color: #54AC00;
 }
 
 .prod-details .qty {
@@ -98,7 +98,7 @@
 }
 
 .view-detail:hover {
-    color: #539F22;
+    color: #54AC00;
 }
 
 .shop-btn {
@@ -112,7 +112,7 @@
 }
 
 .shop-btn:hover {
-    color: #539F22;
+    color: #54AC00;
 }
 
 .prod-btn .out-of-stock{

@@ -51,12 +51,12 @@ const Product = ({ item }) => {
             </div>
             <div className="prod-btn">
                 <div className="view-detail" onClick={() => navigate(`/product/${item._id}`)}>
-                    <VisibilityIcon style={{ fontSize: "1.2em", color: "#539F22" }} />
+                    <VisibilityIcon style={{ fontSize: "1.2em", color: "#54AC00" }} />
                     View detail
                 </div>
                 {item.inStock === true ?
                     <div className="shop-btn" onClick={handleClick}>
-                        < ShoppingBagIcon style={{ fontSize: "1.2em", color: "#539F22" }} />
+                        < ShoppingBagIcon style={{ fontSize: "1.2em", color: "#54AC00" }} />
                         Add to cart
                     </div> :
                     <div className="out-of-stock" >Out of Stock</div>

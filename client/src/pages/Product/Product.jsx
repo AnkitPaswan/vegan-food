@@ -12,6 +12,10 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { toast } from 'react-toastify';
+import EmailIcon from '@mui/icons-material/Email';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import FacebookIcon from '@mui/icons-material/Facebook';
 
 const Product = () => {
 
@@ -30,7 +34,7 @@ const Product = () => {
       try {
         const res = await publicRequest.get("/products/find/" + id);
         setProduct(res.data);
-        console.log(res.data);
+        console.log(res);
       } catch (error) {
         console.log(error);
       }
@@ -73,9 +77,15 @@ const Product = () => {
             </div>
             <div className="right">
               <span className="name">{product.title}</span>
-              <span className="qty">{product.qty}</span>
               <span className="price">&#8377; {product.price}</span>
+              <span className="qty">{product.qty}</span>
               <span className="desc">{product.desc}</span>
+              {!product.inStock &&
+                <>
+                  <span className="sold">Sold Out</span>
+                  <span className="out-of-stock">This item is currently out of stock</span>
+                </>
+              }
 
               <div className="cart-buttons">
                 <div className="quantity-buttons">
@@ -83,25 +93,33 @@ const Product = () => {
                   <span>{quantity}</span>
                   <span onClick={() => handleQuantity("inc")}><AddIcon /></span>
                 </div>
-                <button className="add-to-cart-button" onClick={handleClick}>
-                  <AddShoppingCartIcon size={20} />
-                  Add to cart
-                </button>
+                {product.inStock ?
+                  <button className="add-to-cart-button" onClick={handleClick}>
+                    <AddShoppingCartIcon size={20} />
+                    Add to cart
+                  </button>
+                  : <button className="add-to-cart-button" >
+                    NOTIFY ME
+                  </button>
+                }
               </div>
 
               <span className="divider" />
               <div className="info-item">
 
-                {/* <span className="text-bold">
-                                    Share:
-                                    <span className="socail-icons">
-                                        <FaLinkedinIn size={16} />
-                                        <FaFacebookF size={16} />
-                                        <FaPinterest size={16} />
-                                        <FaInstagram size={16} />
-                                        <FaTwitter size={16} />
-                                    </span>
-                                </span> */}
+                <span className="text-bold">
+                  Share:
+                  <span className="socail-icons">
+                    <FacebookIcon />
+                    <InstagramIcon />
+                    <TwitterIcon />
+                    <EmailIcon />
+                  </span>
+                </span>
+              </div>
+              <div className="ext-bold">
+                Category:
+                <span className="category">{product.categories}</span>
               </div>
 
             </div>

@@ -58,7 +58,7 @@
 }
 
 .center li:hover {
-    color: #1D7328;
+    color: #54AC00;
 }
 
 
@@ -102,21 +102,46 @@
 .right li {
     cursor: pointer;
     font-weight: 500;
-    gap: 30px;
+    /* gap: 30px; */
 }
 
 .sign {
-    font-size: 13px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border: 2px solid #539F22;
     padding: 4px 15px;
-    cursor: pointer;
-    color: white;
-    background: linear-gradient(to right, #1D7328, #539F22);
-    border-radius: 20px;
 }
+ details > summary{
+    position: relative;
+    list-style: none;
+}
+
+
+details .lists {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #eeeeee;
+    width: 100px;
+    padding: 5px;
+    margin: 0;
+    box-shadow: 1px 1px 2px #bbbbbb;
+    position: absolute;
+    z-index: 9;
+
+  }
+ .lists p{
+    font-size: 16px;
+    font-weight: 500;
+    opacity: 0.7;
+    padding: 5px;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+cursor: pointer;
+border-radius: 4px;
+  }
+ .lists p:hover{
+    background-color: #e1dede;
+  }
+
 .form{
     display: flex;
     justify-content: space-between;
@@ -154,7 +179,7 @@
     min-width: 20px;
     text-align: center;
     color: white;
-    background-color: #1D7328;
+    background-color: #54AC00;
     padding: 2.5px;
     position: absolute;
     top: -5px;

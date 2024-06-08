@@ -3,7 +3,9 @@ import React from 'react'
 import "./Header.css";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from "react-router-dom";
 import logo from "../../assests/icon1.png";
 import MenuIcon from '@mui/icons-material/Menu';
@@ -38,6 +40,7 @@ const Header = () => {
             pauseOnHover: false,
             theme: "colored",
         })
+
     }
 
     const handleScroll = () => {
@@ -78,11 +81,11 @@ const Header = () => {
                                 </div>
                             )}
                         </li>
-                        <li>About</li>
+                        <li onClick={() => navigate("/about")}>About</li>
                         <li onClick={() => navigate("/contactUs")}>Contact</li>
                         {
                             !user ? (<li className='sign' onClick={() => navigate("/Login")}> Sign in</li>) :
-                                <li className='sign' onClick={handleLogout}><PermIdentityIcon />Logout</li>
+                                <li className='sign' onClick={handleLogout}><AccountCircleOutlinedIcon />Logout</li>
                         }
                     </div>
                     <div className="right">
@@ -93,13 +96,18 @@ const Header = () => {
                             <ShoppingCartOutlinedIcon />
                             <span>{quantity}</span>
                         </span>
-
-                        <details>
-                            <summmary>
-                                <h1>Ankit</h1>
-                                <h1>Pasean</h1>
-                            </summmary>
-                        </details>
+                        <li className='sign'>
+                            <details>
+                                <summary><AccountCircleOutlinedIcon style={{ fontSize: '28px' }} /></summary>
+                                <div className="lists" >
+                                    {!user ? <p onClick={() => navigate("/Login")}>Login <LoginIcon /></p> :
+                                        <p onClick={handleLogout}>Logout <LogoutIcon /></p>
+                                    }
+                                    <hr />
+                                    <p>Profile <AccountCircleOutlinedIcon /></p>
+                                </div>
+                            </details>
+                        </li>
                         {/* {
                             !user ? (<li className='sign' onClick={() => navigate("/Login")}> Sign in
                             </li>) :
