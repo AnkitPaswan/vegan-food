@@ -14,6 +14,7 @@ const Products = ({ cat, filters, headingText, innerpage }) => {
             try {
                 const res = await publicRequest.get(cat ? `products?category=${cat}` : "/products");
                 setProducts(res.data);
+                // console.log(products);
             } catch (error) {
                 console.log("Error in getting products", error)
                 // res.error(error)

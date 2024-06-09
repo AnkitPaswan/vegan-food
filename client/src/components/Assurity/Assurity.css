@@ -57,7 +57,7 @@
 
 @media screen and (max-width: 1024px) {
     .Assurity-card {
-        /* width: calc(45% - 20px); */
+        width: calc(30% - 10px);
     }
 }
 

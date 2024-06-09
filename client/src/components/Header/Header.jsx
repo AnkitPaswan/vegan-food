@@ -15,6 +15,7 @@ import Categories from '../Categories/Categories'
 import { logout } from '../../redux/userSlice.js'
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import { publicRequest } from "../../utils/requestMethod.js";
 
 
 const Header = () => {
@@ -30,6 +31,7 @@ const Header = () => {
     const navigate = useNavigate();
 
     const [isActive, setIsActive] = useState(false);
+    const [users, setUsers] = useState([]);
 
     const handleLogout = (e) => {
         e.preventDefault();
@@ -52,11 +54,21 @@ const Header = () => {
             setIsActive(false);
         }
     };
-
-
     useEffect(() => {
+        const getUsers = async () => {
+            try {
+                const res = await publicRequest.get("/users");
+                setUsers(res.data);
+                console.log(users);
+            } catch (error) {
+                console.log("Error in getting users", error)
+            }
+        };
+        getUsers();
         window.addEventListener("scroll", handleScroll);
-    });
+    }, []);
+
+
 
     return (
         <>
@@ -105,14 +117,15 @@ const Header = () => {
                                     }
                                     <hr />
                                     <p>Profile <AccountCircleOutlinedIcon /></p>
+                                    {/* 
+                                    {
+                                        user && user.isAdmin && <p onClick={() => navigate("/admin")}>Admin </p>
+
+                                    } */}
+
                                 </div>
                             </details>
                         </li>
-                        {/* {
-                            !user ? (<li className='sign' onClick={() => navigate("/Login")}> Sign in
-                            </li>) :
-                                <li className='sign' onClick={handleLogout}>Logout</li>
-                        } */}
 
                     </div>
                 </div>

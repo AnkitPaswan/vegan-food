@@ -13,7 +13,7 @@ const NewArrival = ({ heading }) => {
             try {
                 const res = await publicRequest.get("/newArrivals");
                 setArrivals(res.data);
-
+                // console.log(arrivals);
             } catch (error) {
                 console.log("Error in getting products", error)
             }

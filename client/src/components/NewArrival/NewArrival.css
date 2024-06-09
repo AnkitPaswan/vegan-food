@@ -91,7 +91,9 @@
 
 @media screen and (max-width: 1024px) {
     .NewArrival-card {
-        /* width: calc(45% - 20px); */
+        width: calc(30% - 5px);
+        padding: 20px 10px;
+        
     }
 }
 

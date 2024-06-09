@@ -249,10 +249,14 @@ border-radius: 4px;
     }
 
     .center {
-        left: 25%;
+        left: 40%;
         gap: 20px;
         font-size: 1.2em;
     }
+    details .lists{
+      right: 10px;
+    }
+   
 
 }
 
@@ -282,7 +286,8 @@ border-radius: 4px;
     }
 
     .logo {
-        width: 80px;
+        width: 50px;
+        height: 50px;
         overflow: hidden;
     }
 
@@ -295,11 +300,11 @@ border-radius: 4px;
         width: 100px;
     }
 
-    .left{
+    /* .left{
         display: flex;
         align-items: center;
         justify-content: center;
-    }
+    } */
 
     .center {
         display: none;
@@ -348,8 +353,7 @@ border-radius: 4px;
     }
 
     .logo {
-        width: 60px;
-        overflow: hidden;
+       display: none;
     }
 
     .center {

@@ -15,6 +15,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import emptycart from '../../assests/emptycart.svg';
 import cartImg from '../../assests/empty-cart.png';
 import { useEffect } from 'react';
+import { loadStripe } from '@stripe/stripe-js';
 
 const Cart = () => {
     const location = useLocation();
@@ -27,6 +28,35 @@ const Cart = () => {
     // console.log(cart);
     const dispatch = useDispatch();
 
+    const makePayment = async () => {
+        console.log(cart);
+        const stripe = await loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+
+        const body = {
+            products: cart.products
+        }
+
+        const headers = {
+            'Content-Type': 'application/json',
+        }
+
+        const response = await fetch("http://localhost:5000/api/create-checkout-session", {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(body)
+        });
+
+        const session = await response.json();
+
+        const result = stripe.redirectToCheckout({
+            sessionId: session.id
+        });
+
+        if (result.error) {
+            console.log(result.error)
+        }
+
+    }
 
     return (
         <>
@@ -123,7 +153,7 @@ const Cart = () => {
                                 <div className="SummaryItemPrice"> <span>&#8377; {cart.total}.00</span></div>
 
                             </div>
-                            <button>CHECKOUT NOW</button>
+                            <button onClick={makePayment}>CHECKOUT NOW</button>
                         </div>
                     }
                 </div>

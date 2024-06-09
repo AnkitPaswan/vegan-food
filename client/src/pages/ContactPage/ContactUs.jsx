@@ -10,28 +10,6 @@ const ContactUs = () => {
             <Announcement />
             <Header />
 
-            {/* <div className="main-contact-page">
-                <div className="contact-container">
-                    <h1>Connect with Us</h1>
-                    <form action="">
-                        <label htmlFor="name">Name </label>
-                        <input type="text" id=" Contact Name" name="name" placeholder='Name' />
-                        <label htmlFor="email">Email </label>
-                        <input type="email" id="Contact Email" name="email" placeholder='Email Address' />
-                        <label htmlFor="phone">Phone </label>
-                        <input type="phone" id="Contact Phone" name="phone" placeholder='Phone Number' />
-
-                        <label htmlFor="textarea">How can we help you?</label>
-                        <textarea name="textarea" id="" cols="20" rows="5" required placeholder="Message..."></textarea>
-                        <button>Send Message</button>
-                    </form>
-                </div>
-                <div className="map-info">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3503.6658287159844!2d77.31209177549881!3d28.579795775693604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5106f125cfb%3A0xc516eda25aa8482c!2sDucat%20IT%20Training%20School%20Noida%20Sector-16!5e0!3m2!1sen!2sin!4v1709477561937!5m2!1sen!2sin" width="1000" height="400" allowFullScreen="" loading="lazy" style={{ border: 0 }} referrerPolicy="no-referrer-when-downgrade" ></iframe>
-
-                </div>
-            </div> */}
-
             <div className="contact">
                 <div className="contact-container">
                     <h1 >Connect with Us</h1>
