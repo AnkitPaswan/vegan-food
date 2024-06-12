@@ -5,6 +5,9 @@ import {
   registerStart,
   registerSuccess,
   registerFailure,
+  addProductStart,
+  addProductSuccess,
+  addProductFailure,
 } from "./userSlice";
 import { publicRequest } from "../utils/requestMethod";
 
@@ -15,6 +18,15 @@ export const registerUser = async (dispatch, user) => {
     dispatch(registerSuccess(res.data));
   } catch (error) {
     dispatch(registerFailure());
+  }
+};
+export const addProduct = async (dispatch, product) => {
+  dispatch(addProductStart());
+  try {
+    const res = await publicRequest.post("/products", product);
+    dispatch(addProductSuccess(res.data));
+  } catch (error) {
+    dispatch(addProductFailure());
   }
 };
 

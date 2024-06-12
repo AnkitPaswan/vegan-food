@@ -44,12 +44,13 @@ const SignUp = () => {
         }
     }
     const handleClick = (e) => {
+        e.preventDefault();
         if (!username || !email || !password) {
             username === '' ? toast.warn('Please enter username') : email === '' ? toast.warn('Please enter email') : password === '' ? toast.warn('Please enter password') :
                 toast.warn('Please fill all fields')
             return;
         }
-        e.preventDefault();
+
         registerValidation(username, email, password);
     }
     return (

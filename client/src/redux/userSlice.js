@@ -30,6 +30,17 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.error = true;
     },
+    addProductStart: (state) => {
+      state.isLoading = true;
+    },
+    addProductSuccess: (state, action) => {
+      state.isLoading = false;
+      state.currentUser = action.payload;
+    },
+    addProductFailure: (state, action) => {
+      state.isLoading = false;
+      state.error = true;
+    },
     logout: (state) => {
       state.currentUser = null;
     },
@@ -43,6 +54,9 @@ export const {
   registerStart,
   registerSuccess,
   registerFailure,
+  addProductStart,
+  addProductSuccess,
+  addProductFailure,
   logout,
 } = userSlice.actions;
 

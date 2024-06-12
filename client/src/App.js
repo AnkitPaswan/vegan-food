@@ -34,7 +34,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/about" element={<About />} />
         <Route path="/contactUs" element={<ContactUs />} />
-        {/* <Route path="/admin" element={<Dashbord />} /> */}
+        <Route path="/admin" element={<Dashbord />} />
         <Route path="/successpage" element={<SuccessPage />} />
       </Routes>
       <ToastContainer />
