@@ -54,6 +54,8 @@ const Cart = () => {
 
         if (result.error) {
             console.log(result.error)
+        } else {
+            console.log("This is session details:-", session);
         }
 
     }
@@ -66,9 +68,6 @@ const Cart = () => {
                 <h1>YOUR BAG</h1>
                 <hr />
                 <div className="top">
-                    {/* <button onClick={() => navigate("/")}>CONTINUE SHOPPING</button> */}
-
-                    {/* <button>CHECKOUT NOW</button> */}
                 </div>
                 <div className="bottom">
                     <div className="info">

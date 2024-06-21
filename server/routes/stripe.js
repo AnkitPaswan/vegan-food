@@ -81,4 +81,18 @@ router.post("/", async (req, res) => {
   res.json({ id: session.id });
 });
 
+/////
+router.get("/user-details", async (req, res) => {
+  // res.send("hello world");
+
+  try {
+    const customerId = req.params.customerId;
+    const customer = await stripe.customers.retrieve(customerId);
+    res.json(customer);
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+  // console.log(customerId);
+});
+
 module.exports = router;
