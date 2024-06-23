@@ -18,8 +18,8 @@ router.post("/", async (req, res) => {
 });
 
 //  UPDATE PRODUCT
-
-router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
+// verifyTokenAndAdmin
+router.put("/:id", async (req, res) => {
   try {
     const updatedProduct = await Product.findByIdAndUpdate(
       req.params.id,
@@ -38,7 +38,8 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
 
 //DELETE PRODUCT
 
-router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
+// router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     await Product.findByIdAndDelete(req.params.id);
     res.status(200).json("Product has been deleted...");

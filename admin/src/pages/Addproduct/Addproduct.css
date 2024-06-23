@@ -11,18 +11,17 @@
 
 .admin-container {
     padding: 40px;
-    background-color: white;
+    background-color: #212838;
     width: 60%;
     margin-top: 10px;
 }
 
 
 
-.admin-container h1 {
+.admin-container h2 {
     text-align: center;
+    color: #fff;
     padding: 10px;
-    font-size: 24px;
-    font-weight: 500;
 }
 
 .admin-container form {
@@ -36,14 +35,17 @@
     flex: 1;
     min-width: 40%;
     margin: 10px 0;
-    padding: 10px;
+    padding: 12px;
+    background-color: #171D28;
+    border: none;
+    color: #fff;
 }
 
 .admin-container form button {
     width: 30%;
     border: none;
     padding: 15px 20px;
-    background-color: #54AC00;
+    background-color: #171D28;
     color: white;
     cursor: pointer;
     margin-top: 10px;

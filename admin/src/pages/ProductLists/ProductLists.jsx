@@ -2,66 +2,142 @@ import React, { useEffect, useState } from 'react'
 import { publicRequest } from '../../utils/requestMethod';
 import './ProductLists.css'
 import Header from '../../components/Header/Header';
+import { MdDelete } from 'react-icons/md'
+import { FaEdit } from "react-icons/fa";
 
 const ProductLists = () => {
-
     const [products, setProducts] = useState([]);
-
-
+    const [editing, setEditing] = useState(null); // add a new state to track the product being edited
+    const [updatedProduct, setUpdatedProduct] = useState({}); // add a new state to store the updated product data
     useEffect(() => {
         const getProducts = async () => {
             try {
                 const res = await publicRequest.get('/products');
                 setProducts(res.data);
-                console.log(products);
             } catch (error) {
                 console.log(error.response.data);
                 // console.log(error.response.data.keyPattern);
-                // }
+
             }
         }
         getProducts();
-    }, [])
+    }, []);
+
+
+    //Delete product
+    const handleDelete = async (id) => {
+        try {
+            await publicRequest.delete(`/products/${id}`);
+            setProducts(products.filter((item) => item._id !== id));
+            console.log("product deleted successfully...");
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    // Edit product
+    const handleEdit = (product) => {
+        // navigate('/addproduct')
+        setEditing(product._id);
+        setUpdatedProduct(product);
+    };
+
+    // Update product
+    const handleUpdate = async () => {
+        try {
+            await publicRequest.put(`/products/${editing}`, updatedProduct);
+            setProducts(products.map((product) => product._id === editing ? updatedProduct : product));
+            setEditing(null);
+            console.log("product updated successfully...");
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
 
     return (
         <>
-
             <Header />
-
             <div className="main-container">
-                <h1>PRODUCTS</h1>
-                <hr />
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Product Id</th>
-                            <th>Image</th>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Category</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {products.map((product) => {
-                            return (
-                                <tr key={product._id}>
-                                    <td>{product._id}</td>
-                                    <td>
-                                        <img src={product.img} alt='' height={50} />
-                                    </td>
-                                    <td><strong>{product.title}</strong></td>
-                                    <td>{product.desc}</td>
-                                    <td>{product.categories}</td>
-                                    <td>{product.qty}</td>
-                                    <td>{product.price}</td>
+                {products.length !== 0 ?
+                    <>
+                        <h3>PRODUCTS</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product Id</th>
+                                    <th>Image</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Category</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>CRUD</th>
                                 </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
+                            </thead>
+                            <tbody>
+                                {products.map((product) => {
+                                    return (
+                                        <tr key={product._id}>
+                                            <td>{product._id}</td>
+                                            <td>
+                                                <img src={product.img} alt='' height={50} />
+                                            </td>
+                                            {
+                                                (editing === product._id) ?
+                                                    (
+                                                        <>
+                                                            <td>
+                                                                <input type="text" value={updatedProduct.title} onChange={(e) => setUpdatedProduct({ ...updatedProduct, title: e.target.value })} />
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" value={updatedProduct.desc} onChange={(e) => setUpdatedProduct({ ...updatedProduct, desc: e.target.value })} />
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" value={updatedProduct.categories} onChange={(e) => setUpdatedProduct({ ...updatedProduct, categories: e.target.value })} />
+                                                            </td>
+                                                            <td>
+                                                                <input type="number" value={updatedProduct.qty} onChange={(e) => setUpdatedProduct({ ...updatedProduct, qty: e.target.value })} />
+                                                            </td>
+                                                            <td>
+                                                                <input type="number" value={updatedProduct.price} onChange={(e) => setUpdatedProduct({ ...updatedProduct, price: e.target.value })} />
+                                                            </td>
+                                                        </>
+                                                    )
+
+                                                    : <>
+                                                        <td><strong>{product.title}</strong></td>
+                                                        <td>{product.desc}</td>
+                                                        <td>{product.categories}</td>
+                                                        <td>{product.qty}</td>
+                                                        <td>{product.price}</td>
+                                                    </>
+                                            }
+
+                                            <td>
+                                                <div className="btn-container">
+
+                                                    {editing === product._id ? (
+                                                        <button className='update-btn' onClick={handleUpdate}>UPDATE</button>
+                                                        // <GrUpdate size={18} onClick={handleUpdate} />
+                                                    ) : (
+                                                        <>
+                                                            <FaEdit size={18} onClick={() => handleEdit(product)} />
+                                                            <MdDelete size={18} onClick={() =>
+                                                                handleDelete(product._id)
+                                                            } />
+                                                        </>
+                                                    )}
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </table> </> : <div className="loader"></div>}
             </div>
+
         </>
     )
 }
