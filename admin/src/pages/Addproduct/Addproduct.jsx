@@ -1,7 +1,7 @@
 import React from 'react'
 import './Addproduct.css'
 import { useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { publicRequest } from '../../utils/requestMethod';
 import { addProduct } from '../../redux/apiCalls';
 import Header from '../../components/Header/Header';
@@ -15,50 +15,58 @@ const Addproduct = () => {
     const [price, setPrice] = useState("");
     const [categories, setCategories] = useState([]);
     const dispatch = useDispatch();
-    const { isFetching, error } = useSelector((state) => state.product);
-
-    console.log(error);
 
 
-    const addProducts = async () => {
+    // const handleClick = (e) => {
+    //     e.preventDefault();
+    //     addProducts();
+    // }
+    const addProducts = async (e) => {
+        e.preventDefault();
         try {
             const res = await publicRequest.post('/products', { title, desc, img, categories, qty, price });
-            console.log(res);
+            // console.log(res);
             if (res.data) {
                 addProduct(dispatch, { title, desc, img, categories, qty, price });
+                clearFields();
             }
         } catch (error) {
             console.log(error.response.data);
-            // console.log(error.response.data.keyPattern);
-            // }
         }
     }
 
-    const handleClick = (e) => {
-        e.preventDefault();
-        addProducts(title, desc, img, categories, qty, price);
+
+
+    const clearFields = () => {
+        setTitle("");
+        setDesc("");
+        setImg("");
+        setQty("");
+        setPrice("");
+        setCategories([]);
     }
 
 
-    return (
-        <>
 
+
+    return (
+        <div>
             <Header />
             <div className="admin">
                 <div className="admin-container">
                     <h2>CREATE PRODUCT</h2>
-                    <form action="">
-                        <input type="title" placeholder="Product Title" onChange={(e) => setTitle(e.target.value)} />
-                        <input type="desc" placeholder="Product Description" onChange={(e) => setDesc(e.target.value)} />
-                        <input type="img" placeholder=" Product Img" onChange={(e) => setImg(e.target.value)} />
-                        <input type="categories" placeholder="Product Categories" onChange={(e) => setCategories(e.target.value)} />
-                        <input type="qty" placeholder="Product Qty" onChange={(e) => setQty(e.target.value)} />
-                        <input type="price" placeholder="Product Price" onChange={(e) => setPrice(e.target.value)} />
-                        <button onClick={handleClick} disabled={isFetching}>PUSH PRODUCT</button>
+                    <form onSubmit={addProducts}>
+                        <input type="text" id='title' placeholder="Product Title" value={title} onChange={(e) => setTitle(e.target.value)} required />
+                        <input type="text" id='desc' placeholder="Product Description" value={desc} onChange={(e) => setDesc(e.target.value)} required />
+                        <input type="text" id='img' placeholder=" Product Img" value={img} onChange={(e) => setImg(e.target.value)} required />
+                        <input type="text" id='categories' placeholder="Product Categories" value={categories} onChange={(e) => setCategories(e.target.value)} required />
+                        <input type="number" id='qty' placeholder="Product Qty" value={qty} onChange={(e) => setQty(e.target.value)} required />
+                        <input type="number" id='price' placeholder="Product Price" value={price} onChange={(e) => setPrice(e.target.value)} required />
+                        <button >PUSH PRODUCT</button>
                     </form>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

@@ -31,6 +31,7 @@ const Customers = () => {
                         <table>
                             <thead>
                                 <tr>
+                                    <th>S.NO.</th>
                                     <th>User Id</th>
                                     <th>User name</th>
                                     <th>Email</th>
@@ -40,10 +41,11 @@ const Customers = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {users.length !== 0 ? users.map((user) => {
+                                {users.length !== 0 ? users.map((user, index) => {
                                     return (
 
                                         <tr key={user._id}>
+                                            <td>{index + 1}</td>
                                             <td>{user._id}</td>
                                             <td><strong>{user.username}</strong></td>
                                             <td>{user.email}</td>

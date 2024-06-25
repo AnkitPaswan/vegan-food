@@ -7,8 +7,8 @@ import { FaEdit } from "react-icons/fa";
 
 const ProductLists = () => {
     const [products, setProducts] = useState([]);
-    const [editing, setEditing] = useState(null); // add a new state to track the product being edited
-    const [updatedProduct, setUpdatedProduct] = useState({}); // add a new state to store the updated product data
+    const [editing, setEditing] = useState(null);
+    const [updatedProduct, setUpdatedProduct] = useState({});
     useEffect(() => {
         const getProducts = async () => {
             try {
@@ -17,12 +17,10 @@ const ProductLists = () => {
             } catch (error) {
                 console.log(error.response.data);
                 // console.log(error.response.data.keyPattern);
-
             }
         }
         getProducts();
     }, []);
-
 
     //Delete product
     const handleDelete = async (id) => {
@@ -37,7 +35,6 @@ const ProductLists = () => {
 
     // Edit product
     const handleEdit = (product) => {
-        // navigate('/addproduct')
         setEditing(product._id);
         setUpdatedProduct(product);
     };
@@ -48,12 +45,10 @@ const ProductLists = () => {
             await publicRequest.put(`/products/${editing}`, updatedProduct);
             setProducts(products.map((product) => product._id === editing ? updatedProduct : product));
             setEditing(null);
-            console.log("product updated successfully...");
         } catch (error) {
             console.log(error);
         }
     };
-
 
     return (
         <>
@@ -65,6 +60,7 @@ const ProductLists = () => {
                         <table>
                             <thead>
                                 <tr>
+                                    <th>S.NO</th>
                                     <th>Product Id</th>
                                     <th>Image</th>
                                     <th>Title</th>
@@ -72,16 +68,17 @@ const ProductLists = () => {
                                     <th>Category</th>
                                     <th>Quantity</th>
                                     <th>Price</th>
-                                    <th>CRUD</th>
+                                    <th>Edit/Dlt</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {products.map((product) => {
+                                {products.map((product, index) => {
                                     return (
                                         <tr key={product._id}>
+                                            <td>{index + 1}</td>
                                             <td>{product._id}</td>
                                             <td>
-                                                <img src={product.img} alt='' height={50} />
+                                                <img src={product.img} alt='' width={40} />
                                             </td>
                                             {
                                                 (editing === product._id) ?
@@ -97,10 +94,10 @@ const ProductLists = () => {
                                                                 <input type="text" value={updatedProduct.categories} onChange={(e) => setUpdatedProduct({ ...updatedProduct, categories: e.target.value })} />
                                                             </td>
                                                             <td>
-                                                                <input type="number" value={updatedProduct.qty} onChange={(e) => setUpdatedProduct({ ...updatedProduct, qty: e.target.value })} />
+                                                                <input type="text" value={updatedProduct.qty} onChange={(e) => setUpdatedProduct({ ...updatedProduct, qty: e.target.value })} />
                                                             </td>
                                                             <td>
-                                                                <input type="number" value={updatedProduct.price} onChange={(e) => setUpdatedProduct({ ...updatedProduct, price: e.target.value })} />
+                                                                <input type="text" value={updatedProduct.price} onChange={(e) => setUpdatedProduct({ ...updatedProduct, price: e.target.value })} />
                                                             </td>
                                                         </>
                                                     )
