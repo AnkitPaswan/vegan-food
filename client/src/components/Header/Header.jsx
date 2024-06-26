@@ -106,11 +106,6 @@ const Header = () => {
                                     <hr />
                                     <p>Profile <AccountCircleOutlinedIcon /></p>
 
-                                    {
-                                        user && user.isAdmin && <p onClick={() => navigate("/admin")}>Admin </p>
-
-                                    }
-
                                 </div>
                             </details>
                         </li>

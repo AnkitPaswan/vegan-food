@@ -41,7 +41,7 @@ function Search() {
 
             <div className='search-results'>
                 {
-                    results.length === 0 ? (
+                    query && results.length === 0 ? (
                         <h1 className='not-found'>result not found "{query}"</h1>
                     ) :
                         (query) && results.map((item) => (

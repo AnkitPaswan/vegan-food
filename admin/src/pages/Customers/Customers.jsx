@@ -41,7 +41,7 @@ const Customers = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {users.length !== 0 ? users.map((user, index) => {
+                                {users.map((user, index) => {
                                     return (
 
                                         <tr key={user._id}>
@@ -55,7 +55,7 @@ const Customers = () => {
                                         </tr>
 
                                     );
-                                }) : <div class="loader"></div>}
+                                })}
                             </tbody>
                         </table>
                     </>
