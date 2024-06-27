@@ -4,6 +4,7 @@ import ProductLists from "./pages/ProductLists/ProductLists";
 import Addproduct from "./pages/Addproduct/Addproduct";
 import Customers from "./pages/Customers/Customers";
 import Orders from "./pages/Orders/Orders";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/orders" element={<Orders />} />
         <Route path="/customerList" element={<Customers />} />
       </Routes>
+      <ToastContainer />
     </Router>
   );
 }

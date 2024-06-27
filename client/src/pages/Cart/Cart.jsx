@@ -16,6 +16,7 @@ import emptycart from '../../assests/emptycart.svg';
 import cartImg from '../../assests/empty-cart.png';
 import { useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
+import axios from 'axios';
 
 const Cart = () => {
     const location = useLocation();
@@ -25,10 +26,11 @@ const Cart = () => {
     const navigate = useNavigate();
     const cart = useSelector(state => state.cart);
     const user = useSelector(state => state.user.currentUser);
-    // console.log(cart);
+    console.log(user);
     const dispatch = useDispatch();
 
     const makePayment = async () => {
+        createOrder();
         // console.log(cart);
         const stripe = await loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
@@ -63,27 +65,20 @@ const Cart = () => {
 
     const createOrder = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/orders', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    products: cart.products,
-                    userId: user._id,
-                    amount: cart.total,
-                }),
+            const response = await axios.post('http://localhost:5000/api/orders', {
+                products: cart.products,
+                userId: user._id,
+                userName: user.username,
+                email: user.email,
+                amount: cart.total,
             });
 
-            const data = await response.json();
+            const data = await response.data;
             console.log(data);
-            // You can also redirect the user to a success page or display a success message
         } catch (error) {
             console.error(error);
-            // You can also display an error message to the user
         }
     };
-
     return (
         <>
             <Header />
@@ -176,7 +171,7 @@ const Cart = () => {
                                 <div className="SummaryItemPrice"> <span>&#8377; {cart.total}.00</span></div>
 
                             </div>
-                            <button onClick={createOrder}>CHECKOUT NOW</button>
+                            <button onClick={makePayment}>CHECKOUT NOW</button>
                         </div>
                     }
                 </div>

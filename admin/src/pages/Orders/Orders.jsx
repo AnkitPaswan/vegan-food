@@ -35,21 +35,25 @@ const Orders = () => {
                                 <tr>
                                     <th>S.NO.</th>
                                     <th>OrderID.</th>
-                                    <th>UserId</th>
-                                    <th>ProductId</th>
+                                    <th>UserID</th>
+                                    <th>UserName</th>
+                                    <th>UserEmail</th>
+                                    <th>ProductID</th>
                                     <th>Quantity</th>
                                     <th>Amount</th>
                                     <th>Status</th>
-                                    <th>CreatedAt</th>
+                                    <th>Date / Time</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {orders.map((order, index) => {
                                     return (
-                                        <tr style={{ textAlign: "center" }} key={order._id}>
+                                        <tr key={order._id} style={{ textAlign: "center" }} >
                                             <td >{index + 1}</td>
                                             <td >{order._id}</td>
                                             <td>{order.userId}</td>
+                                            <td>{order.userName}</td>
+                                            <td>{order.email}</td>
                                             {
                                                 order.products.map((product) =>
                                                     <>
@@ -60,7 +64,7 @@ const Orders = () => {
                                             }
                                             <td >{order.amount}</td>
                                             <td>{order.status}</td>
-                                            <td>{order.createdAt}</td>
+                                            <td>{new Date(order.createdAt).toDateString() + ' , ' + new Date(order.createdAt).toLocaleTimeString()}</td>
                                         </tr>
 
                                     );

@@ -4,6 +4,8 @@ import './ProductLists.css'
 import Header from '../../components/Header/Header';
 import { MdDelete } from 'react-icons/md'
 import { FaEdit } from "react-icons/fa";
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const ProductLists = () => {
     const [products, setProducts] = useState([]);
@@ -27,7 +29,13 @@ const ProductLists = () => {
         try {
             await publicRequest.delete(`/products/${id}`);
             setProducts(products.filter((item) => item._id !== id));
-            console.log("product deleted successfully...");
+            toast.success("Product deleted successfully...", {
+                position: "bottom-center",
+                autoClose: 3000,
+                hideProgressBar: true,
+                theme: "dark",
+
+            });
         } catch (error) {
             console.log(error);
         }
@@ -45,6 +53,14 @@ const ProductLists = () => {
             await publicRequest.put(`/products/${editing}`, updatedProduct);
             setProducts(products.map((product) => product._id === editing ? updatedProduct : product));
             setEditing(null);
+            toast.success("Product updated successfully...", {
+                position: "bottom-center",
+                autoClose: 3000,
+                hideProgressBar: true,
+                theme: "dark",
+
+            });
+
         } catch (error) {
             console.log(error);
         }

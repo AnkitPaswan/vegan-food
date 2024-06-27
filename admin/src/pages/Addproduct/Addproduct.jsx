@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { publicRequest } from '../../utils/requestMethod';
 import { addProduct } from '../../redux/apiCalls';
 import Header from '../../components/Header/Header';
+import { toast } from 'react-toastify'
 
 const Addproduct = () => {
 
@@ -29,6 +30,12 @@ const Addproduct = () => {
             if (res.data) {
                 addProduct(dispatch, { title, desc, img, categories, qty, price });
                 clearFields();
+                toast.success("Product created successfully...", {
+                    position: "bottom-center",
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    theme: "dark",
+                })
             }
         } catch (error) {
             console.log(error.response.data);

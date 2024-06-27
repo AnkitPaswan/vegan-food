@@ -51,7 +51,7 @@ const Customers = () => {
                                             <td>{user.email}</td>
                                             <td>{user.password}</td>
                                             <td>{user.isAdmin === true ? 'true' : 'false'}</td>
-                                            <td>{user.createdAt}</td>
+                                            <td>{new Date(user.createdAt).toLocaleString()}</td>
                                         </tr>
 
                                     );
