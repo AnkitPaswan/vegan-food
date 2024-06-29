@@ -104,7 +104,7 @@ const Header = () => {
                                         <p onClick={handleLogout}>Logout <LogoutIcon /></p>
                                     }
                                     <hr />
-                                    <p>Profile <AccountCircleOutlinedIcon /></p>
+                                    <p onClick={() => navigate("/Profile")}>Profile <AccountCircleOutlinedIcon /></p>
 
                                 </div>
                             </details>

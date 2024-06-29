@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import About from "./pages/AboutPage/About";
 import SuccessPage from "./pages/SuccessPage/SuccessPage";
+import Profile from "./pages/Profile/Profile";
 
 function App() {
   const user = useSelector((state) => state.user.currentUser);
@@ -33,6 +34,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/about" element={<About />} />
         <Route path="/contactUs" element={<ContactUs />} />
+        <Route path="/Profile" element={<Profile />} />
         <Route path="/successpage" element={<SuccessPage />} />
       </Routes>
       <ToastContainer />

@@ -2,12 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { publicRequest } from '../../utils/requestMethod';
 import './ProductLists.css'
 import Header from '../../components/Header/Header';
-import { MdDelete } from 'react-icons/md'
 import { FaEdit } from "react-icons/fa";
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import Modal from '../../components/ModalBox/ModalBox';
 
 const ProductLists = () => {
+
+    const [show, setShow] = useState(false);
+    console.log(show);
+    const handleClose = () => {
+        setShow(false);
+    };
+
     const [products, setProducts] = useState([]);
     const [editing, setEditing] = useState(null);
     const [updatedProduct, setUpdatedProduct] = useState({});
@@ -135,10 +142,13 @@ const ProductLists = () => {
                                                         // <GrUpdate size={18} onClick={handleUpdate} />
                                                     ) : (
                                                         <>
-                                                            <FaEdit size={18} onClick={() => handleEdit(product)} />
-                                                            <MdDelete size={18} onClick={() =>
-                                                                handleDelete(product._id)
-                                                            } />
+                                                            <FaEdit size={18} onClick={() => handleEdit(product)} title="Edit Product" />
+
+                                                            <Modal onClose={handleClose} ankit={<p>Delete Product
+                                                            </p>} btn={<button className="deletebtn" onClick={() =>
+                                                                handleDelete(product._id)}>Delete Product</button>}>
+
+                                                            </Modal>
                                                         </>
                                                     )}
 
