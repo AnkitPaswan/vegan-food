@@ -1,8 +1,4 @@
-
-
 .profile {
-    /* width: 100vw; */
-    /* height: 100%; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,50 +6,32 @@
 }
 
 .profile-container {
-    padding: 40px;
-    background-color: #212838;
+    padding: 30px;
+    background-color: #F2F2F2;
     width: 60%;
     margin-top: 10px;
 }
 
 
 
-.profile-container h2 {
+.profile-container h1 {
     text-align: center;
-    color: #fff;
+    color: #000000;
     padding: 10px;
 }
 
 .profile-container form {
     display: flex;
     flex-direction: column;
+    margin-top: 40px;
 }
 
-
-
-.profile-container form input ,textarea{
+.profile-container form input{
     flex: 1;
     min-width: 40%;
     margin: 10px 0;
     padding: 12px;
-    background-color: #171D28;
+    background-color: #fff;
     border: none;
     color: #fff;
-}
-
-.profile-container form button {
-    width: 30%;
-    border: none;
-    padding: 15px 20px;
-    background-color: #171D28;
-    color: white;
-    cursor: pointer;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-
-form .home{
-    cursor: pointer;
-    text-decoration: underline;
 }

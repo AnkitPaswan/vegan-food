@@ -80,8 +80,8 @@ router.get("/", async (req, res) => {
 // -------------------------------------------------------------------------------------------------------
 
 // GET MONTHLY INCOME
-
-router.get("/income", verifyTokenAndAdmin, async (req, res) => {
+// verifyTokenAndAdmin
+router.get("/income", async (req, res) => {
   const date = new Date();
   const lastMonth = new Date(date.setMonth(date.getMonth() - 1));
   const previousMonth = new Date(new Date().setMonth(lastMonth.getMonth() - 1));
@@ -104,6 +104,35 @@ router.get("/income", verifyTokenAndAdmin, async (req, res) => {
     ]);
     res.status(200).json(income);
   } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// ----------------------------------------------------------------------------------------
+
+//GET USER STATS
+// verifyTokenAndAdmin
+router.get("/stats", async (req, res) => {
+  const date = new Date();
+  const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
+
+  try {
+    const data = await Order.aggregate([
+      { $match: { createdAt: { $gte: lastYear } } },
+      {
+        $project: {
+          month: { $month: "$createdAt" },
+        },
+      },
+      {
+        $group: {
+          _id: "$month",
+          total: { $sum: 1 },
+        },
+      },
+    ]);
+    res.status(200).json(data);
+  } catch (error) {
     res.status(500).json(err);
   }
 });

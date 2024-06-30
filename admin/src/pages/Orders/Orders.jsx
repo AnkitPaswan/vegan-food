@@ -7,7 +7,7 @@ import { publicRequest } from '../../utils/requestMethod';
 const Orders = () => {
 
     const [orders, setOrders] = useState([]);
-    // console.log(orders);
+    console.log(orders);
 
     useEffect(() => {
         const getOrders = async () => {

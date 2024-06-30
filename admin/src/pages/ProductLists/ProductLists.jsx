@@ -139,14 +139,12 @@ const ProductLists = () => {
 
                                                     {editing === product._id ? (
                                                         <button className='update-btn' onClick={handleUpdate}>UPDATE</button>
-                                                        // <GrUpdate size={18} onClick={handleUpdate} />
                                                     ) : (
                                                         <>
                                                             <FaEdit size={18} onClick={() => handleEdit(product)} title="Edit Product" />
 
-                                                            <Modal onClose={handleClose} ankit={<p>Delete Product
-                                                            </p>} btn={<button className="deletebtn" onClick={() =>
-                                                                handleDelete(product._id)}>Delete Product</button>}>
+                                                            <Modal onClose={handleClose} ankit={'Delete Product'} details={'Are you sure you want to delete this product?'} btn={<button className="deletebtn" onClick={() =>
+                                                                handleDelete(product._id)}>Delete</button>}>
 
                                                             </Modal>
                                                         </>

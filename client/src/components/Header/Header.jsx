@@ -34,6 +34,7 @@ const Header = () => {
     const handleLogout = (e) => {
         e.preventDefault();
         dispatch(logout());
+        navigate('/');
         toast.success('Logged out successfully', {
             autoClose: 3000,
             hideProgressBar: true,
@@ -103,8 +104,11 @@ const Header = () => {
                                     {!user ? <p onClick={() => navigate("/Login")}>Login <LoginIcon /></p> :
                                         <p onClick={handleLogout}>Logout <LogoutIcon /></p>
                                     }
-                                    <hr />
-                                    <p onClick={() => navigate("/Profile")}>Profile <AccountCircleOutlinedIcon /></p>
+
+                                    {
+                                        user &&
+                                        <p onClick={() => navigate("/Profile")}>Profile <AccountCircleOutlinedIcon /></p>
+                                    }
 
                                 </div>
                             </details>

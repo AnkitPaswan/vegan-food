@@ -9,6 +9,7 @@ router.post("/register", async (req, res) => {
   const newUser = new User({
     username: req.body.username,
     email: req.body.email,
+    phone: req.body.phone,
     password: CryptoJS.AES.encrypt(
       req.body.password,
       process.env.PASS_SEC
@@ -25,6 +26,8 @@ router.post("/register", async (req, res) => {
       res.status(500).json("Username already exists!");
     } else if (!err.keyPattern || err.keyPattern.email) {
       res.status(500).json("email already exists!");
+    } else if (!err.keyPattern || err.keyPattern.phone) {
+      res.status(500).json("phone already exists!");
     } else {
       res.status(500).json("User already exists!");
     }
@@ -58,7 +61,8 @@ router.post("/login", async (req, res) => {
     );
 
     // console.log(accessToken)
-    const { password, ...others } = user._doc;
+    const { ...others } = user._doc;
+    // const { password, ...others } = user._doc;
 
     res.status(200).json({ ...others, accessToken });
   } catch (err) {

@@ -11,6 +11,7 @@ const SignUp = () => {
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState();
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
     const { isFetching, error } = useSelector((state) => state.user);
@@ -19,10 +20,10 @@ const SignUp = () => {
 
     const registerValidation = async () => {
         try {
-            const res = await publicRequest.post('/auth/register', { username, email, password });
+            const res = await publicRequest.post('/auth/register', { username, email, phone, password });
             console.log(res);
             if (res.data) {
-                registerUser(dispatch, { username, email, password });
+                registerUser(dispatch, { username, email, phone, password });
                 navigate('/login');
                 toast.success('Account created successfully!', {
                     position: "top-right",
@@ -45,13 +46,13 @@ const SignUp = () => {
     }
     const handleClick = (e) => {
         e.preventDefault();
-        if (!username || !email || !password) {
-            username === '' ? toast.warn('Please enter username') : email === '' ? toast.warn('Please enter email') : password === '' ? toast.warn('Please enter password') :
+        if (!username || !email || !phone || !password) {
+            username === '' ? toast.warn('Please enter username') : email === '' ? toast.warn('Please enter email') : phone === '' ? toast.warn('Please enter phone') : password === '' ? toast.warn('Please enter password') :
                 toast.warn('Please fill all fields')
             return;
         }
 
-        registerValidation(username, email, password);
+        registerValidation(username, email, phone, password);
     }
     return (
         <div className="register">
@@ -60,6 +61,7 @@ const SignUp = () => {
                 <form action="">
                     <input type="username" placeholder="username" onChange={(e) => setUsername(e.target.value)} />
                     <input type="email" placeholder="email" onChange={(e) => setEmail(e.target.value)} />
+                    <input type="phone" placeholder="phone" onChange={(e) => setPhone(e.target.value)} />
                     <input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} />
                     <div className="Agreement">
                         By creating an account, I consent to the processing of my personal

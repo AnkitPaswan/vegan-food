@@ -1,10 +1,56 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './Main.css'
 import { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsFillBellFill } from 'react-icons/bs'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line }
     from 'recharts';
+import { publicRequest } from '../../utils/requestMethod';
 
 const Main = () => {
+
+    const [stats, setStats] = useState([]);
+    const [orders, setOrders] = useState([]);
+    const [income, setIncome] = useState([]);
+    const [products, setProducts] = useState([]);
+
+
+    const getStats = async () => {
+        try {
+            const res = await publicRequest.get('/users/stats');
+            setStats(res.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    const getOrders = async () => {
+        try {
+            const res = await publicRequest.get('/orders/stats');
+            setOrders(res.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    const getIncome = async () => {
+        try {
+            const res = await publicRequest.get('/orders/income');
+            setIncome(res.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    const getProducts = async () => {
+        try {
+            const res = await publicRequest.get('/products/stats');
+            setProducts(res.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    useEffect(() => {
+        getStats();
+        getOrders();
+        getIncome();
+        getProducts();
+    }, [])
 
 
     const data = [
@@ -65,28 +111,44 @@ const Main = () => {
                         <h3>PRODUCTS</h3>
                         <BsFillArchiveFill className='card_icon' />
                     </div>
-                    <h1>100</h1>
+                    {
+                        products.map((p) =>
+                            <h1>{p.total}</h1>
+                        )
+                    }
                 </div>
                 <div className="card">
                     <div className="card-inner">
-                        <h3>CATEGORIES</h3>
+                        <h3>ORDERS</h3>
                         <BsFillGrid3X3GapFill className='card_icon' />
                     </div>
-                    <h1>12</h1>
+                    {
+                        orders.map((o) =>
+                            <h1>{o.total}</h1>
+                        )
+                    }
                 </div>
                 <div className="card">
                     <div className="card-inner">
-                        <h3>CUSTOMERS</h3>
+                        <h3>USERS</h3>
                         <BsPeopleFill className='card_icon' />
                     </div>
-                    <h1>25</h1>
+                    {
+                        stats.map((s) =>
+                            <h1>{s.total}</h1>
+                        )
+                    }
                 </div>
                 <div className="card">
                     <div className="card-inner">
-                        <h3>ALERTS</h3>
+                        <h3>INCOMES</h3>
                         <BsFillBellFill className='card_icon' />
                     </div>
-                    <h1>42</h1>
+                    {
+                        income.map((i) =>
+                            <h1>{i.total}</h1>
+                        )
+                    }
                 </div>
             </div>
 
