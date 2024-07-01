@@ -80,8 +80,8 @@ router.get("/", async (req, res) => {
 // -------------------------------------------------------------------------------------------------------
 
 // GET MONTHLY INCOME
-// verifyTokenAndAdmin
-router.get("/income", async (req, res) => {
+/*
+router.get("/income", verifyTokenAndAdmin, async (req, res) => {
   const date = new Date();
   const lastMonth = new Date(date.setMonth(date.getMonth() - 1));
   const previousMonth = new Date(new Date().setMonth(lastMonth.getMonth() - 1));
@@ -106,33 +106,48 @@ router.get("/income", async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-});
+}); */
 
-// ----------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------
 
-//GET USER STATS
-// verifyTokenAndAdmin
-router.get("/stats", async (req, res) => {
-  const date = new Date();
-  const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
-
+//GET TOTAL INCOME
+router.get("/income", async (req, res) => {
   try {
-    const data = await Order.aggregate([
-      { $match: { createdAt: { $gte: lastYear } } },
+    const income = await Order.aggregate([
       {
         $project: {
-          month: { $month: "$createdAt" },
+          sales: "$amount",
         },
       },
       {
         $group: {
-          _id: "$month",
+          _id: null,
+          total: { $sum: "$sales" },
+        },
+      },
+    ]);
+    res.status(200).json(income);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// ----------------------------------------------------------------------------------------
+
+// GET TOTAL PRODUCTS
+// verifyTokenAndAdmin
+router.get("/stats", async (req, res) => {
+  try {
+    const data = await Order.aggregate([
+      {
+        $group: {
+          _id: null,
           total: { $sum: 1 },
         },
       },
     ]);
     res.status(200).json(data);
-  } catch (error) {
+  } catch (err) {
     res.status(500).json(err);
   }
 });

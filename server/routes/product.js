@@ -34,7 +34,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// // --------------------------------------------------------------------------------------------------------------------
+// // --------------------------------------------------------------------------------------------------------
 
 //DELETE PRODUCT
 
@@ -48,7 +48,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-// // -----------------------------------------------------------------------------------------------------------
+// // --------------------------------------------------------------------------------------------------------
 
 //GET PRODUCT
 
@@ -103,9 +103,29 @@ router.get("/search", async (req, res) => {
 
 // --------------------------------------------------------------------------
 
-//GET USER STATS
-// verifyTokenAndAdmin
+//GET TOTAL PRODUCTS STATS
+
 router.get("/stats", async (req, res) => {
+  try {
+    const data = await Product.aggregate([
+      {
+        $group: {
+          _id: null,
+          total: { $sum: 1 },
+        },
+      },
+    ]);
+    res.status(200).json(data);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//-----------------------------------------------------------------------------------------------------
+
+//GET MONTHLY PRODUCTS STATS
+/*
+router.get("/stats",verifyTokenAndAdmin, async (req, res) => {
   const date = new Date();
   const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
 
@@ -128,6 +148,6 @@ router.get("/stats", async (req, res) => {
   } catch (error) {
     res.status(500).json(err);
   }
-});
+}); */
 
 module.exports = router;

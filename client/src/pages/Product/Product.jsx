@@ -16,6 +16,8 @@ import EmailIcon from '@mui/icons-material/Email';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
+import Loader from '../Loader/Loader';
+import RelatedProducts from '../RelatedProducts/RelatedProducts';
 
 const Product = () => {
 
@@ -62,70 +64,72 @@ const Product = () => {
     })
   };
 
-
   return (
     <>
       <Header />
       <Announcement />
-
-      <div className="single-product-main-content">
-        <div className="layout">
-          <div className="single-product-page">
-            <div className="left">
-              <img src={product.img} alt="" />
-            </div>
-            <div className="right">
-              <span className="name">{product.title}</span>
-              <span className="price">&#8377; {product.price}</span>
-              <span className="qty">{product.qty}</span>
-              <span className="desc">{product.desc}</span>
-              {!product.inStock &&
-                <>
-                  <span className="sold">Sold Out</span>
-                  <span className="out-of-stock">This item is currently out of stock</span>
-                </>
-              }
-
-              <div className="cart-buttons">
-                <div className="quantity-buttons">
-                  <span onClick={() => handleQuantity("desc")}><RemoveIcon /></span>
-                  <span>{quantity}</span>
-                  <span onClick={() => handleQuantity("inc")}><AddIcon /></span>
+      {
+        product._id ?
+          <div className="single-product-main-content">
+            <div className="layout">
+              <div className="single-product-page">
+                <div className="left">
+                  <img src={product.img} alt="" />
                 </div>
-                {product.inStock ?
-                  <button className="add-to-cart-button" onClick={handleClick}>
-                    <AddShoppingCartIcon size={20} />
-                    Add to cart
-                  </button>
-                  : <button className="add-to-cart-button" >
-                    NOTIFY ME
-                  </button>
-                }
-              </div>
+                <div className="right">
+                  <span className="name">{product.title}</span>
+                  <span className="price">&#8377; {product.price}</span>
+                  <span className="qty">{product.qty}</span>
+                  <span className="desc">{product.desc}</span>
+                  {!product.inStock &&
+                    <>
+                      <span className="sold">Sold Out</span>
+                      <span className="out-of-stock">This item is currently out of stock</span>
+                    </>
+                  }
 
-              <span className="divider" />
-              <div className="info-item">
+                  <div className="cart-buttons">
+                    <div className="quantity-buttons">
+                      <span onClick={() => handleQuantity("desc")}><RemoveIcon /></span>
+                      <span>{quantity}</span>
+                      <span onClick={() => handleQuantity("inc")}><AddIcon /></span>
+                    </div>
+                    {product.inStock ?
+                      <button className="add-to-cart-button" onClick={handleClick}>
+                        <AddShoppingCartIcon size={20} />
+                        Add to cart
+                      </button>
+                      : <button className="add-to-cart-button" >
+                        NOTIFY ME
+                      </button>
+                    }
+                  </div>
 
-                <span className="text-bold">
-                  Share:
-                  <span className="socail-icons">
-                    <FacebookIcon />
-                    <InstagramIcon />
-                    <TwitterIcon />
-                    <EmailIcon />
-                  </span>
-                </span>
-              </div>
-              <div className="ext-bold">
-                Category:
-                <span className="category">{product.categories}</span>
-              </div>
+                  <span className="divider" />
+                  <div className="info-item">
 
+                    <span className="text-bold">
+                      Share:
+                      <span className="socail-icons">
+                        <FacebookIcon />
+                        <InstagramIcon />
+                        <TwitterIcon />
+                        <EmailIcon />
+                      </span>
+                    </span>
+                  </div>
+                  <div className="ext-bold">
+                    Category:
+                    <span className="category">{product.categories}</span>
+                  </div>
+
+                </div>
+              </div>
+              <RelatedProducts productId={id} categoryId={product.categories} />
+              {/* <RelatedProducts productId={id} categoryId={product.categories.data[0].id} /> */}
             </div>
-          </div>
-          {/* <RelatedProducts productId={id} categoryId={product.categories.data[0].id} /> */}
-        </div>
-      </div>
+          </div> : <Loader />
+      }
 
       <Footer />
     </>

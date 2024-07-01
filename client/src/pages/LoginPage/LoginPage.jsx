@@ -14,13 +14,11 @@ const LoginPage = () => {
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
     const { isFetching, error } = useSelector((state) => state.user);
-
     console.log(error);
     const loginValidation = async () => {
 
         try {
             const res = await publicRequest.post('/auth/login', { username, password });
-            console.log(res);
             if (res.data) {
                 login(dispatch, { username, password });
                 navigate('/');

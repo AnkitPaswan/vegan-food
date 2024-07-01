@@ -15,13 +15,11 @@ const SignUp = () => {
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
     const { isFetching, error } = useSelector((state) => state.user);
-
     console.log(error);
 
     const registerValidation = async () => {
         try {
             const res = await publicRequest.post('/auth/register', { username, email, phone, password });
-            console.log(res);
             if (res.data) {
                 registerUser(dispatch, { username, email, phone, password });
                 navigate('/login');
@@ -34,14 +32,12 @@ const SignUp = () => {
             }
         } catch (error) {
             console.log(error.response.data);
-            // console.log(error.response.data.keyPattern);
             toast.error(error.response.data, {
                 position: "top-right",
                 autoClose: 3000,
                 hideProgressBar: true,
                 theme: "colored",
             })
-            // }
         }
     }
     const handleClick = (e) => {

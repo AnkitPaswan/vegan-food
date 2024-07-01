@@ -26,7 +26,6 @@ const Cart = () => {
     const navigate = useNavigate();
     const cart = useSelector(state => state.cart);
     const user = useSelector(state => state.user.currentUser);
-    console.log(user);
     const dispatch = useDispatch();
 
     const makePayment = async () => {
@@ -171,7 +170,7 @@ const Cart = () => {
                                 <div className="SummaryItemPrice"> <span>&#8377; {cart.total}.00</span></div>
 
                             </div>
-                            <button onClick={makePayment}>CHECKOUT NOW</button>
+                            <button onClick={makePayment} disabled={cart.products.length === 0} style={{ cursor: cart.products.length === 0 ? 'not-allowed' : 'pointer' }} >CHECKOUT NOW</button>
                         </div>
                     }
                 </div>

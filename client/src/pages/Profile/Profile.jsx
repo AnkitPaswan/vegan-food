@@ -7,7 +7,6 @@ import CryptoJS from 'crypto-js';
 const secretKey = "ankit"
 const Profile = () => {
     const user = useSelector(state => state.user.currentUser);
-    console.log(user);
 
     return (
         <>

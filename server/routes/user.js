@@ -78,9 +78,30 @@ router.get("/", async (req, res) => {
 });
 
 // ----------------------------------------------------------------------------------------
-//GET USER STATS
-// verifyTokenAndAdmin
+
+// GET USER STATS
+
 router.get("/stats", async (req, res) => {
+  try {
+    const data = await User.aggregate([
+      {
+        $group: {
+          _id: null,
+          total: { $sum: 1 },
+        },
+      },
+    ]);
+    res.status(200).json(data);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//------------------------------------------------------------------------------------------------
+
+//GET USER MONTHLY STATS
+/*
+router.get("/stats",verifyTokenAndAdmin, async (req, res) => {
   const date = new Date();
   const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
 
@@ -103,6 +124,6 @@ router.get("/stats", async (req, res) => {
   } catch (error) {
     res.status(500).json(err);
   }
-});
+});  */
 
 module.exports = router;

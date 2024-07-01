@@ -3,9 +3,10 @@ import Product from '../Product/Product'
 import './Products.css'
 import { motion } from 'framer-motion';
 import { publicRequest } from "../../utils/requestMethod";
+import Loader from '../../pages/Loader/Loader';
 // import axios from "axios";
 
-const Products = ({ cat, filters, headingText, innerpage }) => {
+const Products = ({ cat, filters, headingText, innerpage, prod }) => {
 
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
@@ -39,11 +40,14 @@ const Products = ({ cat, filters, headingText, innerpage }) => {
                 viewport={{ once: false, amount: 0.7 }}
             >{headingText}</motion.div>}
             <div className="products">
-                {(products.length !== 0) ? (cat ? filteredProducts.map((item) => (
+                {!prod ? (products.length !== 0) ? (cat ? filteredProducts.map((item) => (
                     <Product item={item} key={item._id} />
                 )) : products.slice(0, 8).map((item) => (
                     <Product item={item} key={item._id} />
-                ))) : <h1>Loading...</h1>}
+                ))) : <div><Loader /></div> :
+                    prod.map((item) =>
+                        <Product item={item} key={item._id} />)
+                }
             </div>
         </div>
     )

@@ -3,10 +3,12 @@ import './About.css'
 import abtBanner from '../../assests/banner.png'
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
+import Announcement from '../../components/Announcement/Announcement'
 
 function About() {
     return (
         <>
+            <Announcement />
             <Header />
 
             <div className="about">

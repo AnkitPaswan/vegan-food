@@ -1,27 +1,8 @@
-import React, { useEffect, useState } from 'react'
+
 import './NewArrival.css'
 import { motion } from 'framer-motion';
-import { publicRequest } from "../../utils/requestMethod"
 
-const NewArrival = ({ heading }) => {
-
-    const [arrivals, setArrivals] = useState([]);
-
-    useEffect(() => {
-        const getArrivals = async () => {
-
-            try {
-                const res = await publicRequest.get("/newArrivals");
-                setArrivals(res.data);
-                // console.log(arrivals);
-            } catch (error) {
-                console.log("Error in getting products", error)
-            }
-
-        };
-        getArrivals()
-    }, [])
-    console.log(arrivals);
+const NewArrival = ({ heading, arrivals }) => {
 
 
     return (
@@ -41,28 +22,22 @@ const NewArrival = ({ heading }) => {
                     viewport={{ once: false }}
                 >
                     {
-                        arrivals.length !== 0 ?
-                            arrivals.map((item) =>
-                            (
-                                <div className="NewArrival-card" key={item._id}>
-                                    <p className="new">
-                                        NEW
-                                    </p>
-                                    <div className="NewArrival-thumbnail">
-                                        <img src={item.img} alt="" />
-                                    </div>
-                                    <div className="NewArrival-details">
-                                        <span className="NewArrival-title">{item.title}</span>
-                                        <span className="price">&#8377; {item.price}</span>
-                                        {/* <span className="price">{
-                                            item.inStock === true ? "IN STOCK" : "OUT OF STOCK"
-                                        }
-                                            <del>&#8377; {item.price + 500}</del>
-                                        </span> */}
-                                    </div>
+                        arrivals.map((item) =>
+                        (
+                            <div className="NewArrival-card" key={item._id}>
+                                <p className="new">
+                                    NEW
+                                </p>
+                                <div className="NewArrival-thumbnail">
+                                    <img src={item.img} alt="" />
                                 </div>
-                            )
-                            ) : <h1>Loading...</h1>
+                                <div className="NewArrival-details">
+                                    <span className="NewArrival-title">{item.title}</span>
+                                    <span className="price">&#8377; {item.price}</span>
+                                </div>
+                            </div>
+                        )
+                        )
                     }
 
                 </motion.div>
