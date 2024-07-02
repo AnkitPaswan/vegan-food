@@ -16,6 +16,7 @@ import { ToastContainer } from "react-toastify";
 import About from "./pages/AboutPage/About";
 import SuccessPage from "./pages/SuccessPage/SuccessPage";
 import Profile from "./pages/Profile/Profile";
+import CancelPage from "./pages/CancelPage/CancelPage";
 
 function App() {
   const user = useSelector((state) => state.user.currentUser);
@@ -36,6 +37,7 @@ function App() {
         <Route path="/contactUs" element={<ContactUs />} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="/successpage" element={<SuccessPage />} />
+        <Route path="/cancelpage" element={<CancelPage />} />
       </Routes>
       <ToastContainer />
     </Router>

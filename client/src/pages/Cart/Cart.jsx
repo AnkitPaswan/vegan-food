@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useState } from 'react'
 import './Cart.css';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -27,39 +27,44 @@ const Cart = () => {
     const cart = useSelector(state => state.cart);
     const user = useSelector(state => state.user.currentUser);
     const dispatch = useDispatch();
+    const [isPaymentInProgress, setIsPaymentInProgress] = useState(false);
 
     const makePayment = async () => {
-        createOrder();
-        // console.log(cart);
-        const stripe = await loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+        setIsPaymentInProgress(true);
+        try {
+            createOrder();
+            // console.log(cart);
+            const stripe = await loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
-        const body = {
-            products: cart.products
+            const body = {
+                products: cart.products
+            }
+
+            const headers = {
+                'Content-Type': 'application/json',
+            }
+
+            const response = await fetch("http://localhost:5000/api/create-checkout-session", {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify(body)
+            });
+
+            const session = await response.json();
+
+            const result = stripe.redirectToCheckout({
+                sessionId: session.id
+            });
+
+            if (result.error) {
+                console.log(result.error)
+            }
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsPaymentInProgress(false);
         }
-
-        const headers = {
-            'Content-Type': 'application/json',
-        }
-
-        const response = await fetch("http://localhost:5000/api/create-checkout-session", {
-            method: "POST",
-            headers: headers,
-            body: JSON.stringify(body)
-        });
-
-        const session = await response.json();
-
-        const result = stripe.redirectToCheckout({
-            sessionId: session.id
-        });
-
-        if (result.error) {
-            console.log(result.error)
-        } else {
-            console.log("This is session details:-", session);
-        }
-
-    }
+    };
 
 
     const createOrder = async () => {
@@ -170,7 +175,7 @@ const Cart = () => {
                                 <div className="SummaryItemPrice"> <span>&#8377; {cart.total}.00</span></div>
 
                             </div>
-                            <button onClick={makePayment} disabled={cart.products.length === 0} style={{ cursor: cart.products.length === 0 ? 'not-allowed' : 'pointer' }} >CHECKOUT NOW</button>
+                            <button onClick={makePayment} disabled={cart.products.length === 0} style={{ cursor: cart.products.length === 0 ? 'not-allowed' : 'pointer' }} >{isPaymentInProgress ? 'Processing...' : 'CHECKOUT NOW'}</button>
                         </div>
                     }
                 </div>
