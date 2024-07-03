@@ -87,7 +87,6 @@ const Product = () => {
                       <span className="out-of-stock">This item is currently out of stock</span>
                     </>
                   }
-
                   <div className="cart-buttons">
                     <div className="quantity-buttons">
                       <span onClick={() => handleQuantity("desc")}><RemoveIcon /></span>
@@ -104,10 +103,8 @@ const Product = () => {
                       </button>
                     }
                   </div>
-
                   <span className="divider" />
                   <div className="info-item">
-
                     <span className="text-bold">
                       Share:
                       <span className="socail-icons">
@@ -122,15 +119,12 @@ const Product = () => {
                     Category:
                     <span className="category">{product.categories}</span>
                   </div>
-
                 </div>
               </div>
               <RelatedProducts productId={id} categoryId={product.categories} />
-              {/* <RelatedProducts productId={id} categoryId={product.categories.data[0].id} /> */}
             </div>
           </div> : <Loader />
       }
-
       <Footer />
     </>
   )

@@ -32,7 +32,6 @@ const Cart = () => {
     const makePayment = async () => {
         setIsPaymentInProgress(true);
         try {
-            createOrder();
             // console.log(cart);
             const stripe = await loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
@@ -59,14 +58,15 @@ const Cart = () => {
             if (result.error) {
                 console.log(result.error)
             }
+            else {
+                await createOrder();
+            }
         } catch (error) {
             console.error(error);
         } finally {
             setIsPaymentInProgress(false);
         }
     };
-
-
     const createOrder = async () => {
         try {
             const response = await axios.post('http://localhost:5000/api/orders', {
@@ -101,8 +101,8 @@ const Cart = () => {
                                 <span>Add something to make me happy :)</span>
                             </div>}
                             {cart.products.map((product) => (
-                                <div className="product" key={product._id} product={product}>
-                                    <div className="product-detail">
+                                <div className="product" key={product._id} product={product} >
+                                    <div className="product-detail" onClick={() => navigate(`/product/${product._id}`)}>
                                         <img src={product.img} alt="" />
                                         <div className="details">
                                             <div className="product-name">
@@ -175,7 +175,7 @@ const Cart = () => {
                                 <div className="SummaryItemPrice"> <span>&#8377; {cart.total}.00</span></div>
 
                             </div>
-                            <button onClick={makePayment} disabled={cart.products.length === 0} style={{ cursor: cart.products.length === 0 ? 'not-allowed' : 'pointer' }} >{isPaymentInProgress ? 'Processing...' : 'CHECKOUT NOW'}</button>
+                            <button onClick={makePayment} disabled={cart.products.length === 0} style={{ cursor: cart.products.length === 0 ? 'not-allowed' : 'pointer' }} >{isPaymentInProgress ? 'PROCESSING...' : 'CHECKOUT NOW'}</button>
                         </div>
                     }
                 </div>

@@ -8,7 +8,6 @@ import "react-toastify/dist/ReactToastify.css";
 import Modal from '../../components/ModalBox/ModalBox';
 
 const ProductLists = () => {
-
     const [show, setShow] = useState(false);
     console.log(show);
     const handleClose = () => {

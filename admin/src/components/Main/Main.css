@@ -63,3 +63,18 @@
     background-color: #212838;
 padding: 10px;
   }
+
+
+
+
+  /* ---------media-query----------- */
+
+@media screen and (max-width: 1024px) {
+  .center{
+    transform: translate(-20%);
+  }
+}
+
+/* 768
+
+480 */

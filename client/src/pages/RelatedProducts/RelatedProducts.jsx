@@ -1,25 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { publicRequest } from '../../utils/requestMethod';
 import Products from '../../components/Products/Products';
+import Loader from '../Loader/Loader';
 
-const RelatedProducts = ({ categoryId }) => {
+const RelatedProducts = ({ productId, categoryId }) => {
     const [products, setProducts] = useState([]);
     useEffect(() => {
         const getProducts = async () => {
             try {
                 const res = await publicRequest.get(`/products?category=${categoryId}`);
-                setProducts(res.data);
+                const filteredProducts = res.data.filter((product) => product._id !== productId);
+                setProducts(filteredProducts);
             } catch (error) {
                 console.log("Error in getting products", error)
             }
         };
         getProducts()
-    }, [categoryId]);
-
-    console.log();
+    }, [categoryId, productId]);
     return (
         <div className="related-product">
-            <Products headingText="Related Product" prod={products} />
+            {
+                products.length !== 0 ? (
+                    <Products headingText="Related Product" relatedProducts={products} />
+                ) : <Loader />
+            }
         </div>
     );
 };

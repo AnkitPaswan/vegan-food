@@ -111,7 +111,7 @@ const Customers = () => {
                                                             <td><input type="text" defaultValue={user.username} onChange={(e) => setUpdatedUser({ ...updatedUser, username: e.target.value })} /></td>
                                                             <td><input type="text" defaultValue={user.email} onChange={(e) => setUpdatedUser({ ...updatedUser, email: e.target.value })} /></td>
                                                             <td><input type="text" defaultValue={user.phone} onChange={(e) => setUpdatedUser({ ...updatedUser, phone: e.target.value })} /></td>
-                                                            <td>{user.password}</td>
+                                                            <td>{CryptoJS.AES.decrypt(user.password, secretKey).toString(CryptoJS.enc.Utf8)}</td>
                                                             <td><input type="text" defaultValue={user.isAdmin} onChange={(e) => setUpdatedUser({ ...updatedUser, isAdmin: e.target.value })} /></td>
                                                         </>
                                                     ) :

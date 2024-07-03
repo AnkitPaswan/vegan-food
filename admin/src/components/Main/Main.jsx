@@ -117,7 +117,7 @@ const Main = () => {
                                 </div>
                                 {
                                     products.map((p) =>
-                                        <h1>{p.total}</h1>
+                                        <h1 key={p._id}>{p.total}</h1>
                                     )
                                 }
                             </div>
@@ -128,7 +128,7 @@ const Main = () => {
                                 </div>
                                 {
                                     orders.map((o) =>
-                                        <h1>{o.total}</h1>
+                                        <h1 key={o._id}>{o.total}</h1>
                                     )
                                 }
                             </div>
@@ -139,7 +139,7 @@ const Main = () => {
                                 </div>
                                 {
                                     stats.map((s) =>
-                                        <h1>{s.total}</h1>
+                                        <h1 key={s._id}>{s.total}</h1>
                                     )
                                 }
                             </div>
@@ -150,7 +150,7 @@ const Main = () => {
                                 </div>
                                 {
                                     income.map((i) =>
-                                        <h1>{i.total}</h1>
+                                        <h1 key={i._id}>{i.total}</h1>
                                     )
                                 }
                             </div>

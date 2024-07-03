@@ -6,7 +6,7 @@ import { publicRequest } from "../../utils/requestMethod";
 import Loader from '../../pages/Loader/Loader';
 // import axios from "axios";
 
-const Products = ({ cat, filters, headingText, innerpage, prod }) => {
+const Products = ({ cat, filters, headingText, innerpage, relatedProducts }) => {
 
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
@@ -40,13 +40,14 @@ const Products = ({ cat, filters, headingText, innerpage, prod }) => {
                 viewport={{ once: false, amount: 0.7 }}
             >{headingText}</motion.div>}
             <div className="products">
-                {!prod ? (products.length !== 0) ? (cat ? filteredProducts.map((item) => (
+                {!relatedProducts ? (products.length !== 0) ? (cat ? filteredProducts.map((item) => (
                     <Product item={item} key={item._id} />
                 )) : products.slice(0, 8).map((item) => (
                     <Product item={item} key={item._id} />
                 ))) : <div><Loader /></div> :
-                    prod.map((item) =>
-                        <Product item={item} key={item._id} />)
+                    relatedProducts.map((item) =>
+                        <Product item={item} key={item._id} />
+                    )
                 }
             </div>
         </div>
