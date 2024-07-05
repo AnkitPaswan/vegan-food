@@ -90,9 +90,9 @@ const Header = () => {
                         }
                     </div>
                     <div className="right">
-                        <li>
+                        <div className="search">
                             <Search />
-                        </li>
+                        </div>
                         <span className="cart-icon" onClick={() => navigate("/Cart")}>
                             <ShoppingCartOutlinedIcon />
                             <span>{quantity}</span>
