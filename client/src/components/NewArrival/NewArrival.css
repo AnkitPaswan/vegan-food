@@ -89,6 +89,12 @@
 
 /* ---------media-query--------- */
 
+@media screen and (max-width: 1200px) {
+    .NewArrival-container {
+       padding: 75px 8%;
+        
+    }
+}
 @media screen and (max-width: 1024px) {
     .NewArrival-card {
         width: calc(30% - 5px);
@@ -97,12 +103,21 @@
     }
 }
 
+@media screen and (max-width: 900px) {
+    .NewArrival-container {
+        padding: 75px 8%;
+    }
+}
 @media screen and (max-width: 768px) {
     .NewArrival-card {
         width: calc(45% - 10px);
     }
 }
-
+@media screen and (max-width: 550px) {
+    .NewArrival-container {
+        padding: 75px 4%;
+    }
+}
 @media screen and (max-width: 480px) {
     .head-Title {
         font-size: 24px;

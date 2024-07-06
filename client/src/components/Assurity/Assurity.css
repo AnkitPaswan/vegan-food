@@ -7,18 +7,14 @@
 .Assurity {
     display: flex;
     flex-wrap: wrap;
-    /* gap: 5px; */
     align-items: center;
     text-align: center;
     justify-content: space-evenly;
-    /* margin-top: 50px; */
 }
 
 
 .Assurity-card {
     width: calc(25% - 15px);
-    /* margin-bottom: 24px; */
-    /* background-color: #FFFFFF; */
     padding: 20px 10px;
 }
 
@@ -54,16 +50,32 @@
 
 
 /* ---------media-query--------- */
+@media screen and (max-width: 1200px) {
+    .Assurity-container{
+       padding: 75px 8%;
+        
+    }
+}
 
 @media screen and (max-width: 1024px) {
     .Assurity-card {
         width: calc(30% - 10px);
     }
 }
+@media screen and (max-width: 900px) {
+    .Assurity-container {
+        padding: 75px 8%;
+    }
+}
 
 @media screen and (max-width: 768px) {
     .Assurity-card {
         width: calc(45% - 10px);
+    }
+}
+@media screen and (max-width: 550px) {
+    .Assurity-container {
+        padding: 75px 4%;
     }
 }
 
