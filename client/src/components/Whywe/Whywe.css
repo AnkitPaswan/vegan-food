@@ -94,6 +94,11 @@
     }
 }
 
+@media screen and (max-width: 600px) {
+    .whywe-container {
+        padding: 75px 4%;
+    }
+}
 @media screen and (max-width: 480px) {
     .head-Title {
         font-size: 24px;
