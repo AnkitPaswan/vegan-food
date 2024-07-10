@@ -1,10 +1,17 @@
 import React from 'react'
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { Bs0SquareFill } from 'react-icons/bs'
 
 import './Header.css'
 import { useNavigate } from 'react-router-dom';
 const Header = () => {
 
+
+    const menuRef = useRef();
+    const dropdown_toggle = (e) => {
+        menuRef.current.classList.toggle('center-visible');
+        e.target.classList.toggle('open');
+    }
     const [scrolled, setScrolled] = useState(false);
     const navigate = useNavigate();
 
@@ -25,14 +32,19 @@ const Header = () => {
         <>
             <header className={`main-header ${scrolled ? "sticky-header" : ""}`}>
                 <div className="header-content">
-                    <ul className="left">
-                        <h1>Admin </h1>
-                    </ul>
-                    <div className="center">
+                    <div className='left'>
+                        <li>Admin</li>
+                    </div>
+                    <div onClick={dropdown_toggle} className="hamburger-menu">
+                        <Bs0SquareFill style={{ fontSize: "40px" }} />
+                    </div>
+                    <div ref={menuRef} className="center" >
                         <li onClick={() => navigate('/')}>Dashboard</li>
                         <li onClick={() => navigate('/productList')}>Products</li>
                         <li onClick={() => navigate('/orders')}>Orders</li>
                         <li onClick={() => navigate('/customerList')}>Customers</li>
+                    </div>
+                    <div className="right">
                         <li><button onClick={() => navigate('/addProduct')}>Create Product</button></li>
                     </div>
                 </div>

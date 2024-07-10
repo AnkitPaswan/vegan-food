@@ -1,8 +1,5 @@
 .main-header {
-    width: 100%;
     background-color: #212838;
-    /* background-color: #FFFFFF; */
-    backdrop-filter: blur(150px);
     color: #787B86;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     z-index: 99;
@@ -25,18 +22,18 @@
     display: flex;
     flex: 1;
     align-items: center;
-    font-size: 18px;
+    font-size: 28px;
     font-weight: 900;
     font-style: italic;
-    color: white;
+    color: #fff;
 }
 
 
 .center {
-    position: relative;
-    left: 10%;
+    position: absolute;
+    left: 40%;
     font-weight: 600;
-    transform: translate(-40%);
+    transform: translate(-60%);
     z-index: 999;
     display: flex;
     align-items: center;
@@ -51,18 +48,66 @@
 }
 
 .center li:hover {
-    color: #111316;
+    color: #fff;
 }
 
-.center button{
-    width: 100%;
-    border: none;
-    padding: 15px 20px;
-    background-color: #171d28;
-    color: white;
+.right button {
+    padding: 14px;
+    background-color: #171D28;
+    text-transform: uppercase;
     cursor: pointer;
+    border: none;
+    color: #fff;
     font-weight: 600;
 }
+
+.dropdown {
+    margin: 0 auto;
+    position: relative;
+}
+
+.dropdown .dropdown-btn {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown .dropdown-content {
+    position: absolute;
+    top: 50px;
+    left: -20px;
+    z-index: 1;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    z-index: 99;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    list-style-type: none;
+    animation-timing-function: ease-in;
+}
+
+.right li {
+    cursor: pointer;
+    font-weight: 500;
+    /* gap: 30px; */
+}
+
+.hamburger-menu {
+    display: none;
+}
+
 
 .sticky-header {
     position: sticky;
@@ -81,5 +126,172 @@
     }
 }
 
-
 /* -------------------media query-------------------- */
+
+
+
+@media screen and (max-width: 1200px) {
+    .main-header {
+        padding: 0 40px;
+    }
+
+    .header-content {
+        height: 100px;
+    }
+
+
+}
+
+
+@media screen and (max-width: 1024px) {
+    .main-header {
+        padding: 0 30px;
+    }
+
+    .header-content {
+        height: 80px;
+    }
+
+    .center {
+        left: 30%;
+        gap: 20px;
+        font-size: 1.2em;
+    }
+
+
+}
+
+@media screen and (max-width: 900px) {
+    .center {
+        font-size: 16px;
+        gap: 10px
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .main-header {
+        padding: 0 20px;
+    }
+
+    .header-content {
+        height: 80px;
+    }
+
+    .center,
+    .right {
+        font-size: 14px;
+        gap: 10px
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .main-header {
+        padding: 0 50px;
+    }
+
+    .header-content {
+        height: 80px;
+        flex-direction: row-reverse;
+    }
+
+    .right {
+        position: absolute;
+    }
+
+
+    .hamburger-menu {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        margin-left: 0;
+        width: 80px;
+    }
+
+
+    .center {
+        display: none;
+        width: -webkit-fill-available;
+        position: absolute;
+        background-color: #fff;
+        justify-content: center;
+        z-index: 99;
+        top: 80px;
+        left: 0;
+        padding: 50px;
+        box-shadow: 0px 12px 16px 0px rgba(0, 0, 0, 0.2);
+        border-top: 2px solid #eee;
+        transform: translateX(100%);
+        animation: slideMenuBar 0.5s ease forwards;
+    }
+
+    .center-visible {
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+
+    .main-header {
+        padding: 0 30px;
+    }
+
+    .header-content {
+        height: 60px;
+    }
+
+    .left {
+        display: flex;
+        flex: 1;
+        justify-content: left;
+        align-items: center;
+    }
+
+
+    .center {
+        display: none;
+    }
+
+    .right {
+        position: absolute;
+    }
+
+    .center {
+        display: none;
+        position: absolute;
+        top: 60px;
+    }
+
+    .center-visible {
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+@media screen and (max-width: 400px) {
+    .left li {
+        display: none;
+    }
+
+    .hamburger-menu {
+        justify-content: flex-start;
+        padding: 0;
+    }
+
+    .main-header {
+        padding: 0px 15px;
+    }
+}
+
+@keyframes slideMenuBar {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}

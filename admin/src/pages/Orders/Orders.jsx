@@ -25,7 +25,7 @@ const Orders = () => {
     return (
         <>
             <Header />
-            <div className="main-container">
+            <div className="main-container" style={{ overflowX: 'auto' }}>
                 {orders.length !== 0 ?
                     <>
                         <h3>ORDER DETAILS</h3>
@@ -46,6 +46,11 @@ const Orders = () => {
                             </thead>
                             <tbody>
                                 {orders.map((order) => {
+                                    const createdAt = new Date(order.createdAt);
+                                    const today = new Date();
+                                    const isToday = createdAt.getDate() === today.getDate() &&
+                                        createdAt.getMonth() === today.getMonth() &&
+                                        createdAt.getFullYear() === today.getFullYear();
                                     return (
                                         <tr key={order._id} style={{ textAlign: "-webkit-center" }} >
                                             <td >{orders.indexOf(order) + 1}</td>
@@ -78,7 +83,8 @@ const Orders = () => {
                                             }
                                             <td >{order.amount}</td>
                                             <td>{order.status}</td>
-                                            <td>{new Date(order.createdAt).toDateString() + ' , ' + new Date(order.createdAt).toLocaleTimeString()}</td>
+                                            <td>{isToday ? 'Today' : createdAt.toDateString()} , {createdAt.toLocaleTimeString()}</td>
+                                            {/* <td>{new Date(order.createdAt).toDateString() + ' , ' + new Date(order.createdAt).toLocaleTimeString()}</td> */}
                                         </tr>
 
                                     );
