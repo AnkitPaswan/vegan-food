@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './Main.css'
-import { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsFillCartFill } from 'react-icons/bs'
+import { BsFillArchiveFill, BsPeopleFill, BsFillCartFill } from 'react-icons/bs'
+import { FaRupeeSign } from "react-icons/fa";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line }
     from 'recharts';
 import { publicRequest } from '../../utils/requestMethod';
@@ -11,7 +12,6 @@ const Main = () => {
     const [orders, setOrders] = useState([]);
     const [income, setIncome] = useState([]);
     const [products, setProducts] = useState([]);
-
 
     const getStats = async () => {
         try {
@@ -146,7 +146,7 @@ const Main = () => {
                             <div className="card">
                                 <div className="card-inner">
                                     <h3>INCOMES</h3>
-                                    <BsFillGrid3X3GapFill className='card_icon' />
+                                    <FaRupeeSign className='card_icon' />
                                 </div>
                                 {
                                     income.map((i) =>

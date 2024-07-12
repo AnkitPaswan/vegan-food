@@ -1,11 +1,9 @@
 import React from 'react'
 import { useEffect, useState, useRef } from "react";
-import { Bs0SquareFill } from 'react-icons/bs'
-
+import { HiMenuAlt2 } from "react-icons/hi";
 import './Header.css'
 import { useNavigate } from 'react-router-dom';
 const Header = () => {
-
 
     const menuRef = useRef();
     const dropdown_toggle = (e) => {
@@ -36,7 +34,7 @@ const Header = () => {
                         <li>Admin</li>
                     </div>
                     <div onClick={dropdown_toggle} className="hamburger-menu">
-                        <Bs0SquareFill style={{ fontSize: "40px" }} />
+                        <HiMenuAlt2 style={{ fontSize: "40px" }} />
                     </div>
                     <div ref={menuRef} className="center" >
                         <li onClick={() => navigate('/')}>Dashboard</li>
