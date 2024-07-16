@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import './Main.css'
+import './Dashboard.css'
 import { BsFillArchiveFill, BsPeopleFill, BsFillCartFill } from 'react-icons/bs'
 import { FaRupeeSign } from "react-icons/fa";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line }
@@ -108,7 +108,6 @@ const Main = () => {
                         <div className="main-title">
                             <h3>DASHBOARD</h3>
                         </div>
-
                         <div className="main-cards">
                             <div className="card">
                                 <div className="card-inner">

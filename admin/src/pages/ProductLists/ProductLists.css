@@ -35,12 +35,20 @@ td {
   background-color: #212838;
 }
 
-input {
+td:nth-child(5) {
+  max-width: 130px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+td input {
   flex: 1;
   padding: 12px;
   background-color: #171D28;
   border: none;
   color: #b2afaf;
+  width: 100px;
 }
 
 .btn-container {

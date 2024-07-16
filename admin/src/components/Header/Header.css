@@ -298,3 +298,12 @@
         padding: 0px 15px;
     }
 }
+
+@media screen and (max-width:240px) {
+    .right button {
+        padding: 10px;
+        font-size: 10px;
+        font-weight: 600;
+    }
+
+}

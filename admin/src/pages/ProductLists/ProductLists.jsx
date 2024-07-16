@@ -96,7 +96,7 @@ const ProductLists = () => {
                             <tbody>
                                 {products.map((product, index) => {
                                     return (
-                                        <tr key={product._id}>
+                                        <tr key={product._id} style={{ textAlign: "center" }}>
                                             <td>{index + 1}</td>
                                             <td>{product._id}</td>
                                             <td>

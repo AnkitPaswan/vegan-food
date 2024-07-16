@@ -3,9 +3,15 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header/Header';
 import { publicRequest } from '../../utils/requestMethod';
+import { toast } from 'react-toastify';
+import Modal from '../../components/ModalBox/ModalBox';
 
 const Orders = () => {
-
+    const [show, setShow] = useState(false);
+    console.log(show);
+    const handleClose = () => {
+        setShow(false);
+    };
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
@@ -21,6 +27,22 @@ const Orders = () => {
         };
         getOrders();
     }, []);
+
+    const handleDelete = async (id) => {
+        try {
+            await publicRequest.delete(`/orders/${id}`);
+            setOrders(orders.filter((order) => order._id !== id));
+            toast.success("Order deleted successfully...", {
+                position: "bottom-center",
+                autoClose: 3000,
+                hideProgressBar: true,
+                theme: "dark",
+
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
         <>
@@ -38,10 +60,11 @@ const Orders = () => {
                                     <th>UserName</th>
                                     <th>UserEmail</th>
                                     <th>ProductID</th>
-                                    <th>Quantity</th>
+                                    <th>Qty</th>
                                     <th>Amount</th>
                                     <th>Status</th>
-                                    <th>Date / Time</th>
+                                    <th>Date/Time</th>
+                                    <th>Dlt</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -85,6 +108,14 @@ const Orders = () => {
                                             <td>{order.status}</td>
                                             <td>{isToday ? 'Today' : createdAt.toDateString()} , {createdAt.toLocaleTimeString()}</td>
                                             {/* <td>{new Date(order.createdAt).toDateString() + ' , ' + new Date(order.createdAt).toLocaleTimeString()}</td> */}
+                                            <td>
+                                                <div className="btn-container">
+                                                    <Modal onClose={handleClose} ankit={'Delete Order'
+                                                    } details={'Are you sure you want to delete this order?'} btn={<button className="deletebtn" onClick={() =>
+                                                        handleDelete(order._id)}>Delete</button>}>
+                                                    </Modal>
+                                                </div>
+                                            </td>
                                         </tr>
 
                                     );
