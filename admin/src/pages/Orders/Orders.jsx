@@ -3,8 +3,10 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header/Header';
 import { publicRequest } from '../../utils/requestMethod';
+import { FaEdit } from "react-icons/fa";
 import { toast } from 'react-toastify';
 import Modal from '../../components/ModalBox/ModalBox';
+import OrderModelBox from '../../components/OrderModelBox/OrderModelBox';
 
 const Orders = () => {
     const [show, setShow] = useState(false);
@@ -13,7 +15,9 @@ const Orders = () => {
         setShow(false);
     };
     const [orders, setOrders] = useState([]);
-
+    const [editing, setEditing] = useState(null);
+    const [updatedOrder, setUpdatedOrder] = useState({});
+    console.log(orders);
     useEffect(() => {
         const getOrders = async () => {
             try {
@@ -27,6 +31,31 @@ const Orders = () => {
         };
         getOrders();
     }, []);
+
+    // Edit order
+    const handleEdit = (order) => {
+        setEditing(order._id);
+        setUpdatedOrder(order);
+    };
+
+    // Update order
+    const handleUpdate = async () => {
+        try {
+            await publicRequest.put(`/orders/${editing}`, updatedOrder);
+            setOrders(orders.map((order) => order._id === editing ? updatedOrder : order));
+            setEditing(null);
+            toast.success("Order updated successfully...", {
+                position: "bottom-center",
+                autoClose: 3000,
+                hideProgressBar: true,
+                theme: "dark",
+
+            });
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const handleDelete = async (id) => {
         try {
@@ -57,14 +86,12 @@ const Orders = () => {
                                     <th>S.NO.</th>
                                     <th>OrderID.</th>
                                     <th>UserID</th>
-                                    <th>UserName</th>
-                                    <th>UserEmail</th>
                                     <th>ProductID</th>
-                                    <th>Qty</th>
+                                    <th>Quantity</th>
                                     <th>Amount</th>
                                     <th>Status</th>
                                     <th>Date/Time</th>
-                                    <th>Dlt</th>
+                                    <th>Edit/Dlt</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -78,9 +105,9 @@ const Orders = () => {
                                         <tr key={order._id} style={{ textAlign: "-webkit-center" }} >
                                             <td >{orders.indexOf(order) + 1}</td>
                                             <td >{order._id}</td>
-                                            <td>{order.userId}</td>
-                                            <td>{order.userName}</td>
-                                            <td>{order.email}</td>
+                                            <td>
+                                                <OrderModelBox order={order}>{order.userId}</OrderModelBox>
+                                            </td>
                                             {
                                                 order.products.length > 1 ? (
                                                     <>
@@ -105,15 +132,32 @@ const Orders = () => {
                                                     </>
                                             }
                                             <td >{order.amount}</td>
-                                            <td>{order.status}</td>
+                                            {
+                                                (editing === order._id) ?
+                                                    (
+                                                        <td>
+                                                            <input type="text" value={updatedOrder.status} onChange={(e) => setUpdatedOrder({ ...updatedOrder, status: e.target.value })} />
+                                                        </td>
+                                                    ) :
+                                                    <td>{order.status}</td>
+                                            }
                                             <td>{isToday ? 'Today' : createdAt.toDateString()} , {createdAt.toLocaleTimeString()}</td>
                                             {/* <td>{new Date(order.createdAt).toDateString() + ' , ' + new Date(order.createdAt).toLocaleTimeString()}</td> */}
                                             <td>
                                                 <div className="btn-container">
-                                                    <Modal onClose={handleClose} ankit={'Delete Order'
-                                                    } details={'Are you sure you want to delete this order?'} btn={<button className="deletebtn" onClick={() =>
-                                                        handleDelete(order._id)}>Delete</button>}>
-                                                    </Modal>
+                                                    {
+                                                        editing === order._id ? (
+                                                            <button className='update-btn' onClick={handleUpdate}>UPDATE</button>
+                                                        ) : (
+                                                            <>
+                                                                <FaEdit size={18} onClick={() => handleEdit(order)} title="Edit Order" />
+                                                                <Modal onClose={handleClose} ankit={'Delete Order'
+                                                                } details={'Are you sure you want to delete this order?'} btn={<button className="deletebtn" onClick={() =>
+                                                                    handleDelete(order._id)}>Delete</button>}>
+                                                                </Modal>
+                                                            </>
+                                                        )
+                                                    }
                                                 </div>
                                             </td>
                                         </tr>

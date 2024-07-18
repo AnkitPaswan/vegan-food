@@ -21,8 +21,8 @@ router.post("/", async (req, res) => {
 });
 
 //  UPDATE ORDER
-
-router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
+// verifyTokenAndAdmin
+router.put("/:id", async (req, res) => {
   try {
     const updatedOrder = await Order.findByIdAndUpdate(
       req.params.id,

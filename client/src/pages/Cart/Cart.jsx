@@ -74,6 +74,7 @@ const Cart = () => {
                 userId: user._id,
                 userName: user.username,
                 email: user.email,
+                phone: user.phone,
                 amount: cart.total,
             });
 
