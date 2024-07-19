@@ -27,7 +27,6 @@ const OrderModelBox = ({ order }) => {
                         <p><strong>Name:</strong> {order.userName}</p>
                         <p><strong>Email:</strong> {order.email}</p>
                         <p><strong>Phone:</strong> {order.phone}</p>
-
                     </div>
                 </div>
             )}

@@ -8,6 +8,16 @@ import { publicRequest } from '../../utils/requestMethod';
 
 const Main = () => {
 
+    function convert(value) {
+        if (value >= 1000000) {
+            value = (value / 1000000) + "M"
+        }
+        else if (value >= 1000) {
+            value = (value / 1000) + "K";
+        }
+        return value;
+    }
+
     const [stats, setStats] = useState([]);
     const [orders, setOrders] = useState([]);
     const [income, setIncome] = useState([]);
@@ -149,7 +159,7 @@ const Main = () => {
                                 </div>
                                 {
                                     income.map((i) =>
-                                        <h1 key={i._id}>{i.total}</h1>
+                                        <h1 key={i._id}>{convert(i.total)}</h1>
                                     )
                                 }
                             </div>
