@@ -10,7 +10,7 @@ const CancelPage = () => {
                 <img src={cancelImg} alt="payment cancel" style={{ width: "80px", height: "80px" }} />
                 <h2>Oops, Payment failed</h2>
                 <span>Your payment could not be processed.</span>
-                <button className="btn" onClick={() => navigate('/')}>OK</button>
+                <button className="btn" onClick={() => navigate('/', { replace: true })}>OK</button>
             </div>
         </div>
     )

@@ -10,10 +10,13 @@ import './Footer.css'
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { motion } from 'framer-motion';
+import { useSelector } from "react-redux";
+
 
 const Footer = () => {
     const navigate = useNavigate();
     const [isHomePage, setIsHomePage] = useState(false);
+    const user = useSelector((state) => state.user.currentUser);
 
     const handleScroll = () => {
         const offset = window.scrollY;
@@ -72,19 +75,25 @@ const Footer = () => {
                     </div>
                     <div className="col">
                         <div className="title">Quick Links</div>
-                        <span className="text">
+                        <span className="text" onClick={() => { navigate('/products/dry-fruits') }}>
                             Dry Fruits</span>
-                        <span className="text">Fresh Juice</span>
-                        <span className="text">Fruits</span>
-                        <span className="text">SignIn</span>
-                        <span className="text">Cart</span>
+                        <span className="text" onClick={() => { navigate('/products/juice') }}>Fresh Juice</span>
+                        <span className="text" onClick={() => { navigate('/products/fruits') }}>Fruits</span>
+                        {
+                            !user &&
+                            <span className="text">SignIn</span>
+                        }
+                        {
+                            user &&
+                            <span className="text" onClick={() => navigate("/Profile")}>Profile</span>
+                        }
                     </div>
                     <div className="col">
                         <div className="title">Pages</div>
-                        <span className="text">Home</span>
-                        <span className="text">About</span>
-                        <span className="text">Products</span>
-                        <span className="text">Contact us</span>
+                        <span className="text" onClick={() => navigate("/")}>Home</span>
+                        <span className="text" onClick={() => navigate("/about")}>About</span>
+                        <span className="text" onClick={() => navigate("/Cart")}>Cart</span>
+                        <span className="text" onClick={() => navigate("/contactUs")}>Contact us</span>
                         <span className="text">Privacy policy</span>
                     </div>
                 </div>

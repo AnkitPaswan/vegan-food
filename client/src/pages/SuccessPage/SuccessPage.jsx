@@ -11,7 +11,7 @@ const SuccessPage = () => {
                 <img src="https://funtura.in/lko/wp-content/themes/funtura/assets/images/success.svg" alt="" />
                 <h2>Your Order is Successful.</h2>
                 <span>Thank you so much for your Order.</span>
-                <button className="btn" onClick={() => navigate('/')}>Back To Home</button>
+                <button className="btn" onClick={() => navigate('/', { replace: true })}>Back To Home</button>
             </div>
         </div>
     )

@@ -70,7 +70,7 @@ const Header = () => {
                         <MenuIcon style={{ fontSize: "40px" }} />
                     </div>
                     <div ref={menuRef} className="center" >
-                        <li onClick={() => navigate("/")}>Home</li>
+                        <li onClick={() => navigate("/", { replace: true })}>Home</li>
                         <li className="dropdown" onClick={(e) => { setIsActive(!isActive) }}>
                             <div className="dropdown-btn" >
                                 Shop

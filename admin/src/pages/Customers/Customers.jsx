@@ -94,7 +94,7 @@ const Customers = () => {
                                     <th>Password</th>
                                     <th>isAdmin</th>
                                     <th>CreatedAt</th>
-                                    <th>Buttons</th>
+                                    <th>Edit/Dlt</th>
                                 </tr>
                             </thead>
                             <tbody>
