@@ -15,7 +15,7 @@ function Search() {
     useEffect(() => {
         const getProducts = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/products/search?q=${query}`);
+                const res = await axios.get(`http://localhost:4000/api/products/search?q=${query}`);
                 setResults(res.data);
             } catch (error) {
                 console.log(error);

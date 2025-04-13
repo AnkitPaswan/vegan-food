@@ -43,7 +43,7 @@ const Cart = () => {
                 'Content-Type': 'application/json',
             }
 
-            const response = await fetch("http://localhost:5000/api/create-checkout-session", {
+            const response = await fetch("http://localhost:4000/api/create-checkout-session", {
                 method: "POST",
                 headers: headers,
                 body: JSON.stringify(body)
@@ -69,7 +69,7 @@ const Cart = () => {
     };
     const createOrder = async () => {
         try {
-            const response = await axios.post('http://localhost:5000/api/orders', {
+            const response = await axios.post('http://localhost:4000/api/orders', {
                 products: cart.products,
                 userId: user._id,
                 userName: user.username,
