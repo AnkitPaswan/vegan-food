@@ -11,7 +11,6 @@ const Assurity = () => {
         <>
             <div className="Assurity-container"
             >
-
                 <motion.div className="Assurity"
                     initial={{ opacity: 0, y: 100 }}
                     transition={{ duration: 1.2 }}
