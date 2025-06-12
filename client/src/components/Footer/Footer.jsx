@@ -100,7 +100,7 @@ const Footer = () => {
                 <div className="bottam-bar">
                     <div className="bottam-bar-content">
                         <div className="text">
-                            Copyright &copy; 2024,
+                            Copyright &copy; 2025,
                             <span>
                                 VEGANFOOD.COM
                             </span>
