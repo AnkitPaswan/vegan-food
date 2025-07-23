@@ -75,8 +75,8 @@ router.post("/", async (req, res) => {
     line_items: lineItems,
     mode: "payment",
     shipping_address_collection: { allowed_countries: ["IN"] },
-    success_url: `${process.env.FRONTEND_URL}/?payment=success`,
-    cancel_url: `${process.env.FRONTEND_URL}/cancelpage`,
+    success_url: `${process.env.FRONTEND_URL}/?payment=successpage`,
+    cancel_url: `${process.env.FRONTEND_URL}/?payment=cancelpage`,
   });
   res.json({ id: session.id });
 });
