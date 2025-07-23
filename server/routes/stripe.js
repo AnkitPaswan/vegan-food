@@ -75,8 +75,8 @@ router.post("/", async (req, res) => {
     line_items: lineItems,
     mode: "payment",
     shipping_address_collection: { allowed_countries: ["IN"] },
-    success_url: "http://localhost:3000/successpage",
-    cancel_url: "http://localhost:3000/cancelpage",
+    success_url: "https://vegan-food-webapp.onrender.com/successpage",
+    cancel_url: "https://vegan-food-webapp.onrender.com/cancelpage",
   });
   res.json({ id: session.id });
 });
