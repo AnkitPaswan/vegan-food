@@ -102,10 +102,11 @@
     opacity: 0.7;
 }
 
-
-/* 
 @media screen and (max-width: 768px) {
-    .main-header {
-        padding: 0 50px;
+    .testimonial-title{
+        font-size: 24px;
     }
-} */
+    .testimonial-container {
+        padding: 10px 20px;
+    }
+}
