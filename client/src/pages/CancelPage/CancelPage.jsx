@@ -2,6 +2,8 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import cancelImg from '../../assests/warning.png'
 
+
+
 const CancelPage = () => {
     const navigate = useNavigate();
     return (
